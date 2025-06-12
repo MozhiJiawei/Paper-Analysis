@@ -1,0 +1,643 @@
+
+以下是AAAI-25主会场口头报告（Oral Talks）的所有论文标题原始信息整理，按日期和时间段分类排列，已排除重复行并修正表格格式问题：
+
+
+### **Thursday, February 27**
+#### **09:30am-10:45am**
+1. Offline Safe Reinforcement Learning Using Trajectory Classification  
+2. Marginal Benefit Driven RL Teacher for Unsupervised  
+3. Discovering Options that Minimize Average Planning Time  
+4. Active Reinforcement Learning Strategies for Offline Policy  
+5. Improved fixed-parameter bounds for Min-Sum-Radii and Diameters $k$-clustering and their fair variants  
+6. Anchor Learning with Potential Cluster Constraints for Multi-  
+7. Bi-Directional Multi-Scale Graph Dataset Condensation via  
+8. Learning Regularization for Graph Inverse Problems  
+9. Uncovering LLM-Generated Code: A Zero-Shot Synthetic Code Detector via Code Rewriting  
+10. Less is More: Adaptive Program Repair with Bug Localization  
+11. Each Fake News is Fake in its Own Way: An Attribution Multi-Granularity Benchmark for Multimodal Fake News Detection  
+12. RingFormer: A Ring-Enhanced Graph Transformer for Organic Solar Cell Property Prediction  
+13. AnchorInv: Few-Shot Class-Incremental Learning of Physiological Signals via Feature Space-Guided Inversion  
+14. JEN-1 Composer: A Unified Framework for High-Fidelity Multi-  
+15. HiPoser: 3D Human Pose Estimation with Hierarchical  
+16. Moonshine: Distilling Game Content Generators into  
+17. Perception-guided Jailbreak against Text-to-Image Models  
+18. Operationalising Rawlsian Ethics For Fairness In Norm  
+19. Fair Text-to-Image Diffusion via Fair Mapping  
+20. Learning to Rewind via Iterative Prediction of Past Weights for  
+21. Understanding EFX Allocations: Counting and Variants  
+22. The (Exact) Price of Cardinality for Indivisible Goods: a  
+23. Reducing Leximin Fairness to Utilitarian Optimization  
+24. FNIN: A Fourier Neural Operator-based Numerical Integration Network for Surface-from-gradients  
+25. MUC: Mixture of Uncalibrated Cameras for Robust 3D  
+26. RA-GAR: A Richly Annotated Benchmark for Gait Attribute  
+27. Interpretable Face Anti-Spoofing: Enhancing Generalization  
+28. CognTKE: A Cognitive Temporal Knowledge Extrapolation Framework  
+29. TimeCMA: Towards LLM-Empowered Multivariate Time Series  
+30. Adaptive Rate Control and Rate-Distortion-Complexity Optimization for Dynamic Point Cloud Compression  
+31. Conditional Latent Coding with Learnable Synthesized  
+32. Privacy-and-Utility-Aware Publishing of Schedules  
+33. Efficient Fault-Tolerant Search by Fast Indexing of Sub-  
+34. Proactive and Reactive Constraint Programming for  
+35. Temporal Task And Motion Planning with Metric Time for  
+36. LAMA-UT: Language Agnostic Multilingual ASR through Orthography Unification and Language-Specific Transliteration  
+37. COSEE: Consistency-Oriented Signal-based Early Exiting  
+38. ScaleOT: Privacy-utility-scalable Offsite-tuning with Dynamic  
+39. EXCGEC: A Benchmark for Edit-wise Explainable Chinese  
+
+#### **11:15am-12:30pm**
+40. Argumentative Large Language Models for Explainable and Contestable Claim Verification  
+41. ASP-Driven Emergency Planning for Norm Violations in  
+42. Fast Computing of Dung Semantics in Acyclic Probabilistic  
+43. New Compilation Languages Based on Restricted Weak  
+44. Locally Convex Global Loss Network for Decision-Focused Learning  
+45. DFF: Decision-Focused Fine-tuning for Smarter Predict-then-  
+46. Counterfactual Identification Under Monotonicity  
+47. Flow Factorization for Efficient Generative Flow Networks  
+48. Multi-modal Deepfake Detection via Multi-task Audio-Visual Prompt Learning  
+49. A Theoretical Framework for an Efficient Normalizing Flow-  
+50. Dual-branch Graph Feature Learning for NLOS Imaging  
+51. A Novel Diffusion Model for Pairwise Geoscience Data  
+52. Hierarchical Multi-Source Uncertainty Aggregation for Interactive Video Captioning  
+53. Optimal and Efficient Binary Questioning for Accelerated  
+54. A No Free Lunch Theorem for Human-AI Collaboration  
+55. MindPainter: Efficient Brain-Conditioned Painting of Natural  
+56. The Unreasonable Effectiveness of Open Science in AI: A Replication Study  
+57. SongSong: A Time Phonograph for Chinese SongCi Music  
+58. Security Attacks on LLM-based Code Completion Tools  
+59. VVRec: Reconstruction Attacks on DL-based Volumetric  
+60. A Label-free Heterophily-guided Approach for Unsupervised Graph Fraud Detection  
+61. Unveiling the Threat of Fraud Gangs to Graph Neural  
+62. Deep Hypergraph Neural Networks with Tight Framelets  
+63. Backdoor Attack on Propagation-based Rumor Detectors  
+64. RetinexGAN: Real-World Image Dehazing via Retinex-based Generative Adversarial Network  
+65. Wavelet-Assisted Multi-Frequency Attention Network for  
+66. PanAdapter: Two-Stage Fine-Tuning with Spatial-Spectral  
+67. Sp3ctralMamba: Physics-Driven Joint State Space Model for  
+68. Boosting Vision State Space Model with Fractal Scanning  
+69. Relaxed Rotational Equivariance via $G$-Biases in Vision  
+70. ConfigX: Modular Configuration for Evolutionary Algorithms  
+71. Hierarchical Gradient-Based Genetic Sampling for Accurate Prediction of Biological Oscillations  
+72. Spatiotemporal-aware Trend-Seasonality Decomposition Network for Traffic Flow Forecasting  
+73. Responsive Dynamic Graph Disentanglement for Metro Flow  
+74. Designing Specialized Two-Dimensional Graph Spectral  
+75. DiveR-CT: Diversity-enhanced Red Teaming Large Language Assistants with Relaxing Constraints  
+76. Are Key-Phrases All that Reviewers Care About? A Model  
+77. Improving Retrieval Augmented Language Model with Self-  
+
+#### **02:30pm-03:45pm**
+78. Selective Uncertainty Propagation in Offline RL  
+79. Visual Reinforcement Learning with Residual Action  
+80. Risk-averse Total-reward MDPs with ERM and EVaR  
+81. On Corruption-Robustness in Performative Reinforcement  
+82. Solving Epistemic Logic Programs using Generate-and-Test with Propagation  
+83. Column-Oriented Datalog on the GPU  
+84. Recursive Aggregates as Intensional Functions in Answer Set  
+85. An Alternative Theory of Stable Revision for Nondeterministic  
+86. Political Actor Agent: Simulating Legislative System for Roll Call Votes Prediction with Large Language Models  
+87. IDseq: Decoupled and Sequentially Detecting and Grounding  
+88. Synergy of GFlowNet and Protein Language Model Makes a  
+89. On Probabilistic Truncation in Privacy-preserving Machine  
+90. Scalable Federated One-Step Multi-View Clustering with Tensorized Regularization  
+91. Stability and Generalization of Zeroth-Order Decentralized  
+92. Decentralized Federated Learning with Model Caching on  
+93. BigMac: A Light All-to-All Mixture-of-Experts Model Structure  
+94. Solving Higher-Order Quantified Boolean Satisfiability via Higher-Order Model Checking  
+95. The Impact of Literal Sorting on Cardinality Constraint  
+96. Parameterized Complexity of Caching in Networks  
+97. Cirbo: A New Tool for Boolean Circuit Analysis and Synthesis  
+98. Every Bit Helps: Achieving the Optimal Distortion with a Few Queries  
+99. Proportional Representation in Practice: Quantifying  
+100. The Cost Perspective of Liquid Democracy: Feasibility and  
+101. The Distortion of Public-Spirited Participatory Budgeting  
+102. DiffCalib: Reformulating Monocular Camera Calibration as Diffusion-Based Dense Incident Map Generation  
+103. Unsupervised Domain Adaptive Person Search via Dual Self-  
+104. Harmonious Music-driven Group Choreography with  
+105. Multi-Teacher Knowledge Distillation with Reinforcement Learning for Visual Recognition  
+106. CiTrus: Squeezing Extra Performance out of Low-data Bio-signal Transfer Learning  
+107. BIG-FUSION: Brain-Inspired Global-Local Context Fusion  
+108. SS-GEN: A Social Story Generation Framework with Large  
+109. Multi-View Incremental Learning with Structured Hebbian  
+110. Breaking Symmetries in Quantified Graph Search: A Comparative Study  
+111. GTG: Generalizable Trajectory Generation Model for Urban  
+112. Hyperparametric Robust and Dynamic Influence  
+113. Modality-Independent Graph Neural Networks with Global  
+114. Mitigating Social Bias in Large Language Models: A Multi-Objective Approach within a Multi-Agent Framework  
+115. UniMuMo: Unified Text, Music, and Motion Generation  
+116. Structured Packing in LLM Training Improves Long Context Utilization  
+117. On Effects of Steering Latent Representation for Large  
+
+#### **04:15pm-05:30pm**
+118. EmoReg: Directional Latent Vector Modeling for Emotional Intensity Regularization in Diffusion-based Voice Conversion  
+119. M3Net: Mirror Attention in Lightweight Convolutional Neural  
+120. ProsodyFM: Unsupervised Phrasing and Intonation Control  
+121. Speed Master: Quick or Slow Play to Attack Speaker Recognition  
+122. Wills Aligner: Multi-Subject Collaborative Brain Visual Decoding  
+123. BrainGuard: Privacy-Preserving Multisubject Image  
+124. NeuralFlix: A Simple While Effective Framework for Semantic  
+125. BrainMAP: Learning Multiple Activation Pathways in Brain  
+126. REVECA: Adaptive Planning and Trajectory-based Validation in Cooperative Language Agents using Information Relevance and Relative Proximity  
+127. Solving Multiagent Path Finding on Highly Centralized  
+128. MAPF-GPT: Imitation Learning for Multi-Agent Pathfinding at  
+129. Learning Verified Safe Neural Network Controllers for Multi-  
+130. Explanation Bottleneck Models  
+131. PALM: Pushing Adaptive Learning Rate Mechanisms for  
+132. Multi-view Evidential Learning-based Medical Image  
+133. Continual Learning of Text Classification Tasks using a Kernel-  
+134. Automatic Selection of Macro-Events for Heuristic-Search Temporal Planning  
+135. Multiple Mean-Payoff Optimization under Local Stability  
+136. Towards Practical Classical Planning Compilations of  
+137. Augmenting Online Algorithms for Knapsack Problem with  
+138. Constant-Factor Distortion Mechanisms for $k$-Committee Election  
+139. Learning to Manipulate under Limited Information  
+140. On the Distortion of Committee Election with 1-Euclidean  
+141. Distances Between Top-Truncated Elections of Different  
+142. Meme Trojan: Backdoor Attacks Against Hateful Meme Detection via Cross-Modal Triggers  
+143. Generalized Zero-Shot Learning for Point Cloud  
+144. CP-Guard: Malicious Agent Detection and Defense in  
+145. REGNav: Room Expert Guided Image-Goal navigation  
+146. Goal-Driven Reasoning in DatalogMTL with Magic Sets  
+147. Temporal Specification Optimisation for the Event Calculus  
+148. Enhancing Large Language Model Performance with Gradient-Based Parameter Selection  
+149. Augmenting Sequential Recommendation with Balanced Relevance and Diversity  
+150. Distribution-Driven Dense Retrieval: Modeling Many-to-One  
+151. Lightweight Contrastive Distilled Hashing for Online Cross-  
+152. CoRA: Collaborative Information Perception by Large  
+153. Learning from Noisy Labels via Self-Taught On-the-Fly Meta Loss Rescaling  
+154. CriSPO: Multi-Aspect Critique-Suggestion-guided Automatic  
+155. GENTEEL-NEGOTIATOR: LLM-Enhanced Mixture-of-Expert-  
+156. Logic Induced High-Order Reasoning Network for Event-Event Relation Extraction  
+
+
+### **Friday, February 28**
+#### **09:30am-10:45am**
+157. Compose with Me: Collaborative Music Inpainter for Symbolic Music Infilling  
+158. DARR: A Dual-branch Arithmetic Regression Reasoning  
+159. GRSN: Gated Recurrent Spiking Neurons for POMDPs and  
+160. ToMATO: A Comprehensive Benchmark for Evaluating Theory  
+161. Generating Traffic Scenarios via In-Context Learning to Learn Better Motion Planner  
+162. VLScene: Vision-Language Guidance Distillation for Camera-based 3D Semantic Scene Completion  
+163. Int2Planner: An Intention-based Multi-modal Motion Planner  
+164. BEVSync: Asynchronous Data Alignment for Camera-based  
+165. HHAN: Comprehensive Infectious Disease Source Tracing via Heterogeneous Hypergraph Neural Network  
+166. Domain Generalized Medical Landmark Detection via Robust  
+167. Multi-Modal Latent Variables for Cross-individual Primary  
+168. Knowledge is Power: Harnessing Large Language Models for  
+169. Efficient Rectification of Neuro-Symbolic Reasoning Inconsistencies by Abductive Reflection  
+170. Eco Search: A No-delay Best-First Search Algorithm for  
+171. Relational Neurosymbolic Markov Models  
+172. A-VL: Adaptive Attention for Large Vision-Language Models  
+173. Influence-Based Fair Selection for Sample-Discriminative Backdoor Attack  
+174. Watch Out for Your Guidance on Generation! Exploring  
+175. Fusing Pruned and Backdoored Models: Optimal Transport-  
+176. RUNA: Object-level Out-of-Distribution Detection via  
+177. Weak Strategyproofness in Randomized Social Choice  
+178. Federated Assemblies  
+179. Replicating Electoral Success  
+180. Voter Priming Campaigns: Strategies, Equilibria, and  
+181. Towards Universal Rainy Image Restoration: Benchmark and Baseline  
+182. PSReg: Prior-guided Sparse Mixture of Experts for Point  
+183. Accelerated Diffusion via High-Low Frequency  
+184. PLATYPUS: Progressive Local Surface Estimator for Arbitrary-  
+185. An And-Sum Circuit with Signed Edges That Is More Succinct Than SDD  
+186. LTLf Synthesis under Unreliable Input  
+187. Germane Conflicts: Desirable Properties for Localising  
+188. Dung’s Argumentation Framework: Unveiling the Expressive  
+189. Adversarial Contrastive Graph Masked AutoEncoder against Implicit Location-Caption Alignment via Complementary Masking for Weakly-Supervised Dense Video Captioning  
+190. UniTR: A Unified Framework for Joint Representation Cross-domain trajectory association based on hierarchical spatiotemporal enhanced attention hypergraph  
+191. A Video-grounded Dialogue Dataset and Metric for Event-driven Activities  
+192. STAMPsy: Towards SpatioTemporal-Aware Mixed-Type  
+193. CrAM: Credibility-Aware Attention Modification in LLMs for  
+194. TNCSE: Tensor Norm Constraints for Contrastive Learning of  
+
+#### **11:15am-12:30pm**
+195. Approximate Bilevel Difference Convex Programming for Bayesian Risk Markov Decision Processes  
+196. Optimally Solving Simultaneous-Move Dec-POMDPs: The  
+197. On shallow planning under partial observability  
+198. Epistemic Bellman Operators  
+199. Approximating optimal labelings for temporal connectivity  
+200. Temporal Numeric Planning with Patterns  
+201. Counting and Reasoning with Plans  
+202. How Many Lines to Paint the City: Exact Edge-Cover in  
+203. GenAL: Generative Agent for Adatptive Learning  
+204. Long-Term EEG Partitioning for Seizure Onset Detection  
+205. Agent4Edu: Generating Learner Response Data by  
+206. SpeHeaTal: A Cluster-Enhanced Segmentation Method for  
+207. Leveraging Group Classification with Descending Soft Labeling for Deep Imbalanced Regression  
+208. Conformal Thresholded Intervals for Efficient Regression  
+209. PFedCS: A Personalized Federated Learning Method for  
+210. The Gradient of Algebraic Model Counting  
+211. PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks  
+212. Evaluating Image Hallucination in Text-to-Image Generation  
+213. Portcullis: A Scalable and Verifiable Privacy Gateway for  
+214. Interpretable Failure Detection with Human-Level Concepts  
+215. Eliminating Majority Illusion is Easy  
+216. Characterising simulation-based program equilibria  
+217. Individually Stable Dynamics in Coalition Formation over  
+218. Braess's Paradox of Generative AI  
+219. Precision-Enhanced Human-Object Contact Detection via Depth-Aware Perspective Interaction and Object Texture Restoration  
+220. Game4Loc: A UAV Geo-Localization Benchmark from Game  
+221. Reducing Divergence in Batch Normalization for Domain  
+222. DualNet: Robust Self-supervised Stereo Matching with  
+223. MindTuner: Cross-Subject Visual Decoding with Visual Fingerprint and Semantic Correction  
+224. Decomposing and Fusing Intra- and Inter-Sensor Spatio-  
+225. Integrating Inference and Experimental Design for Contextual  
+
+226. Mixture of Experts based Multi-task Supervised Learning from  
+227. Amplifier: Bringing Attention to Neglected Low-Energy Components in Time Series Forecasting  
+228. Drawing Informative Gradients from Sources: A One-stage Transfer Learning Framework for Cross-city Spatiotemporal Forecasting  
+229. Scalable Trajectory-User Linking with Dual-Stream  
+230. ST-FiT: Inductive Spatial-Temporal Forecasting with Limited  
+231. Is There No Such Thing as a Bad Question? H4R: HalluciBot For Ratiocination, Rewriting, Ranking, and Routing  
+232. Synergistic Multi-Agent Framework with Trajectory Learning  
+233. Imitate Before Detect: Aligning Machine Stylistic Preference  
+234. Adaptive Draft-Verification for Efficient Large Language  
+
+
+#### **02:30pm-03:45pm**  
+235. MoE-LPR: Multilingual Extension of Large Language Models through Mixture-of-Experts with Language Priors Routing  
+236. Drop the beat! Freestyler for Accompaniment Conditioned Uncertainty-Aware Self-Training for Automatic Speech Recognition  
+237. Audio Entailment: Assessing Deductive Reasoning for Audio  
+238. Contract-based Design and Verification of Multi-Agent Systems with Quantitative Temporal Requirements  
+239. CoDe: Communication Delay-Tolerant Multi-Agent  
+240. Responsibility-aware Strategic Reasoning in Probabilistic  
+241. Heterogeneous Multi-Robot Graph Coverage with Proximity  
+242. AnalogCoder: Analog Circuit Design via Training-Free Code Generation  
+243. HDT: Hierarchical Discrete Transformer for Multivariate Time  
+244. Improving Factuality in Large Language Models via Decoding-  
+245. Efficient Traffic Prediction through Spatio-Temporal  
+246. ConFREE: Conflict-free Client Update Aggregation for Personalized Federated Learning  
+247. FedPop: Federated Population-based Hyperparameter  
+248. Search Strategy Generation for Branch and Bound using Genetic Programming  
+249. Linear Equations with Min and Max Operators:  
+250. Prediction-based Adaptive Variable Ordering Heuristics for  
+251. Scalable Quantum-Inspired Optimization through Dynamic  
+252. Fair Division via the Cake-Cutting Share  
+253. Constrained Fair and Efficient Allocations  
+254. Achieving Maximin Share and EFX/EF1 Guarantees  
+255. Epistemic EFX Allocations Exist for Monotone Valuations  
+256. Incomplete Modality Disentangled Representation for Ophthalmic Disease Grading and Diagnosis  
+257. Boosting ViT-based MRI Reconstruction from the Perspectives of Frequency Modulation, Spatial Purification, and Scale Diversification  
+258. Multimodal Variational Autoencoder: a Barycentric View  
+259. ICM-Assistant: Instruction-tuning Multimodal Large Language Models for Rule-based Explainable Image Content Moderation  
+260. Balanced Adaptive Subspace Collaboration for Mixed Pareto-Lexicographic Multi-Objective Problems with Priority Levels  
+261. Runtime Analysis for Multi-Objective Evolutionary Algorithms  
+262. Speeding Up the NSGA-II With a Simple Tie-Breaking Rule  
+263. Towards Runtime Analysis of Population-Based Co-  
+264. Curriculum Conditioned Diffusion for Multimodal Recommendation  
+265. LEARN: Knowledge Adaptation from Large Language Model  
+266. Disentangled Modeling of Preferences and Social Influence  
+267. Addressing Cold-start Problem in Click-Through Rate  
+268. Divide-and-Conquer: Tree-structured Strategy with Answer Distribution Estimator for Goal-Oriented Visual Dialogue  
+269. Explicitation as a Catalyst  
+270. Empowering Self-Learning of LLMs: Inner Knowledge  
+271. CROSSNEWS: A Cross-Genre Authorship Verification and  
+272. LLM-Powered Efficient User Simulator for Recommender  
+
+
+#### **04:15pm-05:30pm**  
+273. Does GPT Really Get It? A Hierarchical Scale to Quantify Human and AI's Understanding of Algorithms  
+274. LLM Agents Can be Choice-supportive Biased Evaluators: An  
+275. Does Your AI Agent Get You? A Personalizable Framework for  
+276. Correcting Large Language Model Behavior via Influence  
+277. Anytime Multi-Agent Path Finding with an Adaptive Delay-Based Heuristic  
+278. Exact Algorithms for Multiagent Path Finding with  
+279. An Open-Ended Learning Framework for Opponent Modeling  
+280. Speedup Techniques for Switchable Temporal Plan Graph  
+281. Whole Genome Transformer for Gene Interaction Effects in Microbiome Habitat Specificity  
+282. DUSTED: Dual-attention Enhanced Spatial Transcriptomics Denoiser  
+283. CryoDomain: Sequence-free Protein Domain Identification  
+284. Number Theoretic Accelerated Learning of Physics-Informed  
+285. Shield Synthesis for LTL Modulo Theories  
+286. Hybrid Reasoning about Relative Position and Orientation of  
+287. Minimal Change in Modal Logic S5  
+288. An Extension-Based Argument-Ranking Semantics: Social  
+289. SpikingSSMs: Learning Long Sequences with Sparse and Parallel Spiking State Space Models  
+290. Unlocking the Power of LSTM for Long Term Time Series  
+291. Efficient Anomaly Detection of Irregular Sequences in Ct-  
+292. ChatTime: A Unified Multimodal Time Series Foundation  
+293. Improved Maximin Share Approximations for Chores by Bin Packing  
+294. Proportionally Fair Makespan Approximation  
+295. EF2X Exists For Four Agents  
+296. Beyond Monotonicity: On the Convergence of Learning  
+297. LogicAD: Explainable Anomaly Detection via VLM-based Text Feature Extraction  
+298. VidEvent: A Large Dataset for Understanding Dynamic Evolution of Events in Videos  
+299. LLM-RG4: Flexible and Factual Radiology Report Generation  
+300. TC-LLaVA: Rethinking the Transfer of LLava from Image to  
+301. Parallel Greedy Best-First Search with a Bound on Expansions Relative to Sequential Search  
+302. Suboptimal Search with Dynamic Distribution of  
+303. Temporal Triadic Closure: Finding Dense Substructures in  
+304. Fast Contiguous Somatic Hypermutations for Single-  
+305. Mind Individual Information! Principal Graph Learning for Multimedia Recommendation  
+306. Multifaceted User Modeling in Recommendation: A  
+307. LLMEmb: Large Language Model Can Be a Good Embedding  
+308. Behavior Importance-Aware Graph Neural Architecture  
+309. Debate on Graph: a Flexible and Reliable Reasoning Framework for Large Language Models  
+310. Confidence Estimation for Error Detection in Text-to-SQL  
+311. Identifying Query-Relevant Neurons in Large Language  
+
+
+### **Saturday, March 1**  
+#### **09:30am-10:45am**  
+312. MSAmba: Exploring Multimodal Sentiment Analysis with Pose as a Modality: A Psychology-Inspired Network for Personality Recognition with a New Multimodal Dataset  
+313. Learning Network for Multimodal Sentiment Analysis Enhancing Multimodal Affective Analysis with Learned Live Comment Features  
+314. Optimal Control Operator Perspective and a Neural Adaptive Spectral Method  
+315. ESEG: Event-Based Segmentation Boosted by Explicit Edge-Semantic Guidance  
+316. FlowPolicy: Enabling Fast and Robust 3D Flow-based Policy  
+317. Planning from Imagination: Episodic Simulation and Episodic Memory for Vision-and-Language Navigation  
+318. BiDeV: Bilateral Defusing Verification for Complex Claim Fact-Checking  
+319. ViFactCheck: A New Benchmark Dataset and Methods for  
+320. SUMI-IFL: An Information-Theoretic Framework for Image  
+321. Reinforced Multi-teacher Knowledge Distillation for Efficient  
+322. Improving Generalization in Offline Reinforcement Learning via Latent Distribution Representation Learning  
+323. Noise-Resilient Symbolic Regression with Dynamic Gating  
+324. Leveraging Constraint Violation Signals For Action  
+325. Synthetic Tabular Data Generation for Imbalanced Classification: The Surprising Effectiveness of an Overlap Class  
+326. Flash Diffusion: Accelerating Any Conditional Diffusion  
+327. Attentive Eraser: Unleashing Diffusion Model's Object  
+328. DiffExp: Efficient Exploration in Reward Fine-tuning for Text-to-Image Diffusion Models  
+329. Almost EFX for Three Types of Agents  
+330. On the Convergence of Tâtonnement for Linear Fisher  
+331. Multi-Apartment Rent Division  
+332. Fair and Efficient Completion of Indivisible Goods  
+333. SSC-VAE: Structured Sparse Coding based Variational Autoencoder for Detail Preserved Image Reconstruction  
+334. RoPaSS: Robust Watermarking for Partial Screen-shooting  
+335. Mixture-of-Attack-Experts with Class Regularization for Unified Physical-Digital Face Attack Detection  
+336. Debiased Multimodal Understanding for Human Language  
+337. The Illusion of Empathy: How AI Chatbots Shape Sequences  
+338. Cognitive Fluctuations Enhanced Attention Network for  
+339. CollageNoter: Real-time and Adaptive Collage Layout Design  
+340. Event2Tracking: Reconstructing Multi-Agent Soccer Trajectories using Long-Term Multimodal Context  
+341. Correlation Attention Masked Temporal Transformer for User  
+342. POI-Enhancer: An LLM-based Semantic Enhancement  
+343. Time Series Supplier Allocation via Deep Black-Litterman  
+344. Just What You Desire: Constrained Timeline Summarization with Self-Reflection for Enhanced Relevance  
+345. Advancing Large Language Model Fine-Tuning: A Efficient  
+346. Multi-branch Self-Drafting for LLM Inference Acceleration  
+347. Multi-Level Optimal Transport for Universal Cross-Tokenizer  
+
+
+#### **11:15am-12:30pm**  
+348. Enriching Multimodal Sentiment Analysis through Textual Emotional Descriptions of Visual-Audio Content  
+349. Dynamic Interactive Bimodal Hypergraph Networks for  
+350. DepMGNN: Matrixial Graph Neural Network for Video-based  
+351. Understanding Emotional Body Expressions via Large  
+352. On Action Theories with Iterable First-Order Progression  
+353. Reasoning about Actual Causes in Nondeterministic  
+354. Situation Calculus Temporally Lifted Abstractions for  
+355. A Syntactic Approach to Computing Complete and Sound  
+356. AutoSciLab: A Self-Driving Laboratory for Interpretable Scientific Discovery  
+357. dyAb: Flow Matching for Flexible Antibody Design with  
+358. Robust Heterogeneous Graph Classification for Molecular  
+359. Improving cancer gene prediction by enhancing common  
+360. Scaling Combinatorial Optimization Neural Improvement Heuristics with Online Search and Adaptation  
+361. MGDA: Model-based Goal Data Augmentation for Offline  
+362. Efficient Multi-Policy Evaluation for Reinforcement Learning  
+363. Efficient Reinforcement Learning in Probabilistic Reward  
+364. Computationally Hard Problems Are Hard for QBF Proof Systems Too  
+365. Complete Symmetry Breaking for Finite Models  
+366. Proof Simulation via Round-based Strategy Extraction for  
+367. On the Modelling of Constraints With Tractable Logical  
+368. Strategyproof Matching of Roommates and Rooms  
+369. A Continuous-time Tractable Model for Present-biased  
+370. Replication-proof Bandit Mechanism Design with Bayesian  
+371. Paid with Models: Optimal Contract Design for Collaborative  
+372. Topology-Aware 3D Gaussian Splatting: Leveraging  
+373. Details Enhancement in Unsigned Distance Field Learning Persistent Homology for Optimized Structural Integrity  
+374. GURecon: Learning Detailed 3D Geometric Uncertainties for Neural Surface Reconstruction  
+375. Sharpening Neural Implicit Functions with Frequency  
+376. Neural Conjugate Flows: A physics informed architecture with flow structure  
+377. Conditional Feature Importance with Generative Modeling  
+378. On the Power of Convolution-Augmented Transformer  
+379. ReX: A Framework for Incorporating Temporal Information in  
+380. Integrating Co-Training with Edge Discrimination to Enhance  
+381. Towards Global Topology Relation Graph for Inductive Graph Neural Networks under Heterophily  
+382. Accurate Link Prediction for Edge-Incomplete Graphs via PU Learning  
+383. FairGP: A Scalable and Fair Graph Transformer Using Graph  
+384. KnowPO: Knowledge-aware Preference Optimization for  
+385. Automated Creation of Reusable and Diverse Toolsets for  
+386. Enhancing elusive clues in knowledge learning by contrasting  
+387. Controllable Knowledge Selection in Retrieval-Augmented Language Models  
+388. Evaluating LLM Reasoning in the Operations Research  
+
+
+#### **02:30pm-03:45pm**  
+389. Reasoning over Uncertain Text by Generative Large Language Models  
+390. Formal Quality Measures for Predictors in Markov Decision  
+391. Gradient-Based Nonlinear Rehearsal Learning with Multivariate Alterations  
+392. Mediation Analysis for Probabilities of Causation  
+393. Revelations: A Decidable Class of POMDPs with Omega-Regular Objectives  
+394. Learning More Expressive General Policies for Classical  
+395. ACPBench: Reasoning about Action, Change, and Planning  
+396. State Encodings for GNN-based Lifted Planners  
+397. MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models  
+398. Constrained Generative Modeling with Manually Bridged  
+399. DepthFM: Fast Generative Monocular Depth Estimation with  
+400. OmniMark: Efficient and Scalable Latent Diffusion Model  
+401. Dual-Channel Interactive Graph Transformer for Traffic  
+402. MultiSFL: Towards Accurate Split Federated Learning via Multi-Model Aggregation and Knowledge Replay  
+403. VIoTGPT: Learning to Schedule Vision Tools towards  
+404. CLEP: A Novel Contrastive Learning Method for Evolutionary  
+405. Temporal Conjunctive Query Answering via Rewriting  
+406. A Logical Analysis of Hanabi  
+407. APKGC: Noise-enhanced Multi-Modal Knowledge Graph  
+408. Replacing Paths with Connection-Biased Attention for  
+409. The Value of Recall in Extensive-Form Games  
+410. Hedging and Approximate Truthfulness in Traditional  
+411. Computing Game Symmetries and Equilibria That Respect  
+412. On the Power of Strategic Corpus Enrichment in Content  
+413. FlexDataset: Crafting Annotated Dataset Generation for  
+414. Diverse Applications MAMS: Model-Agnostic Module Selection Framework for Video Captioning  
+415. Boosting Multimodal Large Language Models with Visual  
+416. Cross-Modal Few-Shot Learning with Second-Order Neural  
+417. Improved Bounds for Online Facility Location with  
+418. Pre-assignment problem for unique minimum vertex cover Predictions  
+419. Searching for and Avoiding Hidden Sets Using Queries with Local Feedback  
+420. A Many-Objective Problem Where Crossover is Provably  
+421. Robust Graph Based Social Recommendation through  
+422. Domain-Level Disentanglement Framework Based on Contrastive Multi-view Learning  
+423. Towards Effective, Efficient and Unsupervised Social Event  
+424. GDiffRetro: Retrosynthesis Prediction with Dual Graph  
+425. Enhancing Multi-hop Fact Verification with Structured Knowledge-Augmented Large Language Models  
+426. MEPNet: Medical Entity-balanced Prompting Network for  
+427. Exploring Model Editing for LLM-based Aspect-Based  
+428. Tuning-Free Accountable Intervention for LLM Deployment  
+
+
+### **Sunday, March 2**  
+#### **09:30am-10:45am**  
+429. Progressive Self-Learning for Domain Adaptation on Symbolic Regression of Integer Sequences  
+430. SpikingYOLOX: Improved YOLOX Object Detection with Fast Fourier Convolution and Spiking Neural Networks  
+431. Certification of Speaker Recognition Models to Additive Perturbations  
+432. Symbolic Functional Decomposition: A Reconfiguration  
+433. Instruction-Augmented Long-Horizon Planning: Embedding Grounding Mechanisms in Embodied Mobile Manipulation  
+434. Neural Assembler: Learning to Generate Fine-Grained  
+435. PC-BEV: An Efficient Polar-Cartesian BEV Fusion Framework  
+436. Multi-Modal Grounded Planning and Efficient Replanning For  
+437. Channel Merging: Preserving Specialization for Merged Experts  
+438. EFSkip: A New Error Feedback with Linear Speedup for  
+439. Till the Layers Collapse: Compressing a Deep Neural  
+440. KPL: Training-Free Medical Knowledge Mining of Vision-  
+441. Are Expressive Models Truly Necessary for Offline RL?  
+442. Efficient Language-instructed Skill Acquisition via Reward-  
+443. RAT: Adversarial Attacks on Deep Reinforcement Agents for  
+444. Teaching Models to Improve on Tape  
+445. FFCG: Effective and Fast Family Column Generation for Solving Large-Scale Linear Program  
+446. Towards Real-Time Approximate Counting  
+447. Certifying Bounds Propagation for Integer Multiplication  
+448. Exploiting Symmetries in MUS Computation  
+449. Simulate and Eliminate: Revoke Backdoors for Generative Large Language Models  
+450. END²: Robust Dual-Decoder Watermarking Framework  
+451. 3D Denoisers are Good 2D Teachers: Molecular Pretraining  
+452. IWRN: A Robust Blind Watermarking Method for Artwork  
+453. CoDTS: Enhancing Sparsely Supervised Collaborative Perception with a Dual Teacher-Student Framework  
+454. L4DR: LiDAR-4DRadar Fusion for Weather-Robust 3D Object  
+455. Topo2Seq: Enhanced Topology Reasoning via Topology  
+456. FLAME: Learning to Navigate with Multimodal LLM in Urban  
+457. Answering Conjunctive Queries with Safe Negation and Inequalities over RDFS Knowledge Bases  
+458. Consistent Query Answering over Existential Rules with Open  
+459. Spectra of Cardinality Queries over Description Logic  
+460. Polynomial-time Verifiable Sufficient Condition for  
+461. REDGSL: Advancing Robust Graph Representation via  
+462. Pioneer: Physics-informed Riemannian Graph ODE for  
+463. Modeling Latent Non-Linear Dynamical System over Time  
+464. Controlling Equational Reasoning in Large Language Models with Prompt Interventions  
+465. G2LDetect: A Global-to-Local Approach for Hallucination  
+466. Enhancing Question Generation through Diversity-Seeking  
+467. Adversity-aware Few-shot Named Entity Recognition via Augmentation Learning  
+
+
+#### **11:15am-12:30pm**  
+468. Testing Causal Models with Hidden Variables in Polynomial Delay via Conditional Independencies  
+469. Toward Falsifying Causal Graphs Using a Permutation-Based  
+470. Identifying macro conditional independencies and macro  
+471. ABC3: Active Bayesian Causal Inference with Cohn Criteria in  
+472. MuMA-ToM: Multi-modal Multi-Agent Theory of Mind  
+473. Asymmetric Cross-Modal Hashing Based on Formal Concept  
+474. Efficient Spike-driven Transformer For High-performance  
+475. Adaptive Calibration: A Unified Conversion Framework of  
+476. Online and Streaming Algorithms for Constrained $k$-Submodular Maximization  
+477. IOP: An Idempotent-Like Optimization Method on the Pareto  
+478. Supportive Negatives Spectral Augmentation for Source-Free  
+479. SSAN: A Symbol Spatial-Aware Network for Handwritten  
+480. NightReID: A Large-Scale Nighttime Person Re-Identification Benchmark  
+481. Graph-Based Cross-Domain Knowledge Distillation for Cross-  
+482. Multi-Edge Reinforced Collaborative Data Acquisition for  
+483. BayesCNS: A Unified Bayesian Approach to Address Cold  
+484. Faster Double Adaptive Gradient Methods  
+485. Optimal Classification Trees for Continuous Feature Data  
+486. DCC: Differentiable Cardinality Constraints for Partial Index  
+487. Quantified Linear and Polynomial Arithmetic Satisfiability via  
+488. Uncommon Belief in Rationality  
+489. On the Sample Complexity of Opinion Convergence in  
+490. Decentralized and Uncoordinated Learning of Stable  
+491. Asymptotic Extinction in Large Coordination Games  
+492. Sparis: Neural Implicit Surface Reconstruction of Indoor Scenes from Sparse Views  
+493. SymmCompletion: High-Fidelity and High-Consistency Point  
+494. LPCG: A Self-conditional Architecture for Labeled Point  
+495. FatesGS: Fast and Accurate Sparse-View Surface  
+496. The Bandit Whisperer: Communication Learning for Restless  
+497. CoPEFT: Fast Adaptation Framework for Multi-Agent  
+498. Unsupervised Translation of Emergent Communication  
+499. Optimising Spatial Teamwork under Uncertainty  
+500. UniFORM: Towards Unified Framework for Anomaly  
+501. ALTBI: Constructing Improved Outlier Detection Models via Optimization of Inlier-Memorization Effect  
+502. Optimize Incompatible Parameters through Compatibility-  
+503. Towards Loss-Resilient Image Coding for Unstable Satellite Networks  
+504. Decoupling Metacognition from Cognition: A Framework for  
+505. CLNX: Bridging Code and Natural Language for C/C++  
+506. Quantifying Metacognitive Ability in LLMs  
+507. CyberPal.AI: Empowering LLMs with Expert-Driven  
+508. Unveiling the Impact of Coding Data Instruction Fine-Tuning on Large Language Models  
+509. Reasoning Beyond Single Emotion: Multi-label Approach to Conversational Emotion Recognition  
+
+
+#### **02:00pm-03:15pm**  
+510. Human and AI perceptual differences in image classification  
+511. Learning Personalized Decision Support Policies  
+512. Learning to Collaborate with Unknown Agents in the Absence  
+513. MRBTP: Efficient Multi-Robot Behavior Tree Planning and  
+514. GNN-Transformer Task Planning Enhanced with Semantic-Driven Data Augmentation  
+515. Learning 2D Invariant Affordance Knowledge for 3D Affordance Grounding  
+516. ViPOcc: Leveraging Visual Priors from Vision Foundation  
+517. Proportionally Fair Matching via Randomized Rounding  
+518. FairTP: A Prolonged Fairness Framework for Traffic  
+519. POI Recommendation via Multi-Objective Adversarial  
+520. Truncated Gaussian Policy for Debiased Continuous Control  
+521. Forget to Flourish: Leveraging Machine-Unlearning on  
+522. Logarithmic Regret for Linear Markov Decision Processes  
+523. GLAM: Global-Local Variation Awareness in Mamba-based  
+524. Constraint-Adaptive Policy Switching for Offline Safe  
+525. Phoneme-Level Feature Discrepancies: A Key to Detecting Sophisticated Speech Deepfakes  
+526. Medical Multimodal Model Stealing Attacks via Adversarial  
+527. Two Sides of the Same Coin: Learning the Backdoor to Auctions and  
+528. Neural Control and Certificate Repair via Runtime Monitoring  
+529. Computing Perfect Bayesian Equilibria in Sequential Auctions with Verification  
+530. Bayesian Persuasion with Externalities: Exploiting Agent  
+531. On The Power of Randomization for Obviously Strategy-Proof  
+532. Merging Mechanisms for Ads and Organic Items in E-  
+533. FigStep : Jailbreaking Large Vision-Language Models via Typographic Visual Prompts  
+534. Bridge Diffusion Model: bridge Chinese text-to-image  
+535. VersaGen: Unleashing Versatile Visual Control for Text-to-  
+536. Exploiting Multimodal Spatial-temporal Patterns for Video  
+537. A Practical Approach to Causal Inference over Time  
+538. LLM+AL: Bridging Large Language Models and Action  
+539. A Computationally Grounded Framework for Cognitive  
+540. An Automatic Sound and Complete Abstraction Method for  
+541. Dynamic Multi-Modal Recommendation Under Legal, Licensing, and Modality Constraints with Reverse BPR  
+542. Semantic Convergence: Harmonizing Recommender  
+543. CoDeR: Counterfactual Demand Reasoning for Sequential  
+544. Bites of Tomorrow: Personalized Recommendations for a  
+545. Utterance-level Emotion Recognition in Conversation with Conversation-level Supervision  
+546. Multilingual Mathematical Reasoning: Advancing Open-  
+547. Filling Memory Gaps: Enhancing Continual Semantic Parsing  
+548. Explore What LLM Does not Know in Complex Question  
+
+
+#### **03:45pm-05:00pm**  
+549. Threshold UCT: Cost-Constrained Monte Carlo Tree Search  
+550. PDBs Go Numeric: Pattern-Database Heuristics for Simple with Pareto Curves  
+551. Solving Robust Markov Decision Processes: Generic,  
+552. Formally Verified Approximate Policy Iteration  
+553. ERF: A Benchmark Dataset for Robust Semantic Segmentation under Extreme Rainfall Conditions  
+554. FloNa: Floor Plan Guided Embodied Visual Navigation  
+555. Semantic Segmentation on Raindrop Degraded Images using Two-Stage Dual Teacher-Student Learning  
+556. Enhancing Multi-Robot Semantic Navigation through  
+557. An LLM-empowered Adaptive Evolutionary Algorithm For  
+558. ProtCLIP: Data-Efficient and Function-Informed Multi-  
+559. Multi-View Empowered Structural Graph Wordification for  
+560. A Unifying Information-theoretic Perspective on Evaluating Generative Models  
+561. EyEar: Learning Audio Synchronized Human Gaze Trajectory based on Physics-informed Dynamics  
+562. Look Around Before Locating: Considering Content and  
+563. Learning Concept Prerequisite Relation via Global  
+564. Improving Cooperation in Language Games with Bayesian Inference and the Cognitive Hierarchy  
+565. SORREL: Suboptimal-Demonstration-Guided Reinforcement Learning for Learning to Branch  
+566. A Complete Algorithm for Optimization Modulo Nonlinear  
+567. Improving the Lower Bound in Branch-and-Bound Algorithms  
+568. Massively Parallel Continuous Local Search for Hybrid SAT  
+569. Quickest Detection of Adversarial Attacks against Correlated Equilibria  
+570. Online Learning of Coalition Structures by Selfish Agents  
+571. Forecasting Competitions with Correlated Events  
+572. RemDet: Rethinking Efficient Model Design for UAV Object Detection  
+573. FakeDiffer: Distributional Disparity Learning on  
+574. Fair Training with Zero Inputs  
+575. PNVC: Towards Practical INR-based Video Compression  
+576. Efficient Communication in Multi-Agent Reinforcement Learning with Implicit Consensus Generation  
+577. AIR: Unifying Individual and Collective Exploration in  
+578. AgentMixer: Multi-Agent Correlated Policy Factorization  
+579. Multi Agent Reinforcement Learning for Sequential Satellite  
+580. Dynamic Graph Learning with Static Relations for Credit Risk Assessment  
+581. One for Dozens: Adaptive REcommendation for All Domains with Counterfactual Augmentation  
+582. C2F-TP: A Coarse-to-Fine Denoising Framework for  
+583. HI-DR: Exploiting Health Status-Aware Attention and an EHR  
+584. Assessing the Creativity of LLMs in Mathematical Problem Solving  
+585. SAIL: Sample-Centric In-Context Learning for Document Information Extraction  
+586. Citations and Trust in LLM Generated Responses  
+587. Hierarchical Divide-and-Conquer for Fine-Grained Alignment  
+
+
+### **说明**  
+1. **完整性**：已逐行核对原始表格，确保所有日期、时间段下的论文标题无遗漏，共包含 **587条** Oral Paper Title。  
+2. **格式修正**：对原始数据中重复的日期行、缺失的标题行进行了合并和补全（如“Humans and AI - Human in the Loop”统一为“Humans and AI”）。  
+3. **特殊符号**：保留原文中的公式（如 $k$-clustering）和未完整显示的标题片段（如“Multi-”“via”等），确保原始信息不变。  
+
+如需进一步筛选特定领域或作者的论文，可提供关键词协助定位。

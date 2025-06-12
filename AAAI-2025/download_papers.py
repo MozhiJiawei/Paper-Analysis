@@ -123,12 +123,13 @@ def sanitize_filename(filename: str) -> str:
     return filename.strip()
 
 
-def create_filename_from_title(title: str, index: int) -> str:
+def create_filename_from_title(title: str, page_index: int, index: int) -> str:
     """
     根据论文标题创建文件名
 
     Args:
         title: 论文标题
+        page_index: 页面索引
         index: 论文序号
 
     Returns:
@@ -142,7 +143,7 @@ def create_filename_from_title(title: str, index: int) -> str:
         clean_title = f"paper_{index:03d}"
     else:
         # 添加序号前缀以避免重名
-        clean_title = f"{index:03d}_{clean_title}"
+        clean_title = f"{page_index:03d}_{index:03d}_{clean_title}"
     
     # 确保有.pdf扩展名
     if not clean_title.endswith('.pdf'):
@@ -258,12 +259,14 @@ def download_pdf(url: str, save_dir: str, filename: str = None, max_retries: int
     return False
 
 
-def download_all_pdfs(pdf_info_list: List[dict], save_dir: str = DEFAULT_SAVE_DIR, delay: float = DEFAULT_DELAY) -> dict:
+def download_all_pdfs(pdf_info_list: List[dict], page_id:int = 0, save_dir: str = DEFAULT_SAVE_DIR,
+                      delay: float = DEFAULT_DELAY) -> dict:
     """
     下载所有PDF文件
 
     Args:
         pdf_info_list: PDF信息列表，字典列表（包含url和title）
+        page_id: 页面ID
         save_dir: 保存目录
         delay: 每次下载之间的延迟（秒）
 
@@ -295,7 +298,7 @@ def download_all_pdfs(pdf_info_list: List[dict], save_dir: str = DEFAULT_SAVE_DI
 
             # 生成文件名
             if title:
-                filename = create_filename_from_title(title, i)
+                filename = create_filename_from_title(title, page_id, i)
             else:
                 filename = f"paper_{i:03d}_{extract_filename_from_url(pdf_url, f'aaai2025_{i:03d}')}"
 
@@ -377,59 +380,60 @@ def main():
     """
     logger.info("开始AAAI 2025论文下载程序")
     
-    # 步骤1: 获取页面内容
-    logger.info("步骤1: 获取页面内容")
-    page_content = fetch_page_content(AAAI_ISSUE_URL)
-    
-    if not page_content:
-        logger.error("获取页面内容失败，程序退出")
-        return
-    
-    logger.info("成功获取页面内容")
-    
-    # 步骤2: 解析PDF链接和标题
-    logger.info("步骤2: 解析PDF链接和标题")
-    pdf_info_list = extract_pdf_links_with_titles(page_content, AAAI_ISSUE_URL)
-    
-    if not pdf_info_list:
-        logger.warning("没有找到可下载的PDF链接，请检查网页解析是否正确")
-        return
-    
-    logger.info(f"找到 {len(pdf_info_list)} 个PDF文件")
-    
-    # 显示前5个作为示例
-    for i, info in enumerate(pdf_info_list[:5], 1):
-        logger.info(f"{i}. {info['title']}")
-    
-    if len(pdf_info_list) > 5:
-        logger.info(f"... 还有 {len(pdf_info_list) - 5} 个PDF文件")
-    
-    # 步骤3: 应用下载限制（如果有）
-    if MAX_DOWNLOADS and MAX_DOWNLOADS < len(pdf_info_list):
-        limited_pdf_info = pdf_info_list[:MAX_DOWNLOADS]
-        logger.info(f"限制下载数量为: {MAX_DOWNLOADS}")
-    else:
-        limited_pdf_info = pdf_info_list
-    
-    logger.info(f"准备下载的PDF文件数量: {len(limited_pdf_info)}")
-    
-    # 步骤4: 开始下载
-    logger.info("步骤4: 开始下载PDF文件")
-    download_results = download_all_pdfs(limited_pdf_info, DEFAULT_SAVE_DIR, DEFAULT_DELAY)
-    
-    # 步骤5: 检查下载结果
-    logger.info("步骤5: 检查下载结果")
-    file_stats = check_download_results(DEFAULT_SAVE_DIR)
-    
-    # 总结
-    logger.info("=" * 50)
-    logger.info("下载任务完成总结:")
-    logger.info(f"成功下载: {download_results['success']} 个文件")
-    logger.info(f"下载失败: {download_results['failed']} 个文件")
-    logger.info(f"文件总数: {file_stats['count']} 个")
-    logger.info(f"总大小: {file_stats['total_size_mb']:.2f} MB")
-    logger.info("=" * 50)
-    
+    for page_id, url in enumerate(AAAI_ISSUE_URL, 1):
+        # 步骤1: 获取页面内容
+        logger.info("步骤1: 获取页面内容")
+        page_content = fetch_page_content(url)
+        
+        if not page_content:
+            logger.error("获取页面内容失败，程序退出")
+            return
+        
+        logger.info("成功获取页面内容")
+        
+        # 步骤2: 解析PDF链接和标题
+        logger.info("步骤2: 解析PDF链接和标题")
+        pdf_info_list = extract_pdf_links_with_titles(page_content, url)
+        
+        if not pdf_info_list:
+            logger.warning("没有找到可下载的PDF链接，请检查网页解析是否正确")
+            return
+        
+        logger.info(f"找到 {len(pdf_info_list)} 个PDF文件")
+        
+        # 显示前5个作为示例
+        for i, info in enumerate(pdf_info_list[:5], 1):
+            logger.info(f"{i}. {info['title']}")
+        
+        if len(pdf_info_list) > 5:
+            logger.info(f"... 还有 {len(pdf_info_list) - 5} 个PDF文件")
+        
+        # 步骤3: 应用下载限制（如果有）
+        if MAX_DOWNLOADS and MAX_DOWNLOADS < len(pdf_info_list):
+            limited_pdf_info = pdf_info_list[:MAX_DOWNLOADS]
+            logger.info(f"限制下载数量为: {MAX_DOWNLOADS}")
+        else:
+            limited_pdf_info = pdf_info_list
+        
+        logger.info(f"准备下载的PDF文件数量: {len(limited_pdf_info)}")
+        
+        # 步骤4: 开始下载
+        logger.info("步骤4: 开始下载PDF文件")
+        download_results = download_all_pdfs(limited_pdf_info, page_id, DEFAULT_SAVE_DIR, DEFAULT_DELAY)
+        
+        # 步骤5: 检查下载结果
+        logger.info("步骤5: 检查下载结果")
+        file_stats = check_download_results(DEFAULT_SAVE_DIR)
+        
+        # 总结
+        logger.info("=" * 50)
+        logger.info("下载任务完成总结:")
+        logger.info(f"成功下载: {download_results['success']} 个文件")
+        logger.info(f"下载失败: {download_results['failed']} 个文件")
+        logger.info(f"文件总数: {file_stats['count']} 个")
+        logger.info(f"总大小: {file_stats['total_size_mb']:.2f} MB")
+        logger.info("=" * 50)
+        
     logger.info("AAAI 2025论文下载程序完成")
 
 
