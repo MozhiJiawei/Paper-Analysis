@@ -1,3 +1,7 @@
+# 下载目录
+AAAI-2025-Papers/
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
