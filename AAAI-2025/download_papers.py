@@ -101,6 +101,7 @@ def extract_pdf_links_with_titles(html_content: str, base_url: str) -> List[dict
 
     return pdf_info_list
 
+
 def sanitize_filename(filename: str) -> str:
     """
     清理文件名，移除不合法的字符

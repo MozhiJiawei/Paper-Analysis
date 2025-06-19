@@ -2,6 +2,9 @@
 AAAI-2025-Papers/
 .idea/
 
+# 生成结果
+*.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

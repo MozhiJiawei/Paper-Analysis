@@ -1,21 +1,41 @@
 from grobid_client.grobid_client import GrobidClient
 from bs4 import BeautifulSoup
 from typing import Dict, Optional
+import os
 
-def extract_paper_abstract(pdf_path: str) -> Dict:
+def _get_config_path() -> str:
+    """获取config.json文件的绝对路径"""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, "config.json")
+
+def abstract_parser(pdf_path: str):
+    client = GrobidClient(config_path=_get_config_path())
+    client.process("processHeaderDocument", pdf_path, n=20)
+
+def extract_paper_abstract(pdf_file_path: str) -> Dict:
     """
     从PDF文件中提取论文信息
     
     Args:
-        pdf_path: PDF文件的路径
+        pdf_file_path: PDF文件的路径
         
     Returns:
         包含论文信息的字典，包括标题、作者、摘要等
     """
-    client = GrobidClient(config_path="./config.json")
-    result = client.process_pdf("processHeaderDocument",
-                              pdf_path,
-                              None, None, None, None, None, None, None)[2]
+    # 生成对应的XML文件路径
+    xml_file_path = os.path.splitext(pdf_file_path)[0] + '.grobid.tei.xml'
+    
+    # 检查XML文件是否存在
+    if os.path.exists(xml_file_path):
+        # 如果XML文件存在，直接读取
+        with open(xml_file_path, 'r', encoding='utf-8') as f:
+            result = f.read()
+    else:
+        # 如果XML文件不存在，使用Grobid处理PDF
+        client = GrobidClient(config_path=_get_config_path())
+        result = client.process_pdf("processHeaderDocument",
+                                    pdf_file_path,
+                                    None, None, None, None, None, None, None)[2]
     
     # 使用BeautifulSoup解析XML
     soup = BeautifulSoup(result, 'xml')
