@@ -4,6 +4,9 @@ AAAI-2025-Papers/
 
 # 生成结果
 *.txt
+*.csv
+*.xlsx
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

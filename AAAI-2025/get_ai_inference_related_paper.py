@@ -19,7 +19,7 @@ def get_ai_papers_using_parse(papers_dir: str, oral_list_file: str = None, analy
     if analyze_all:
         print("开始分析路径下的全量论文，筛选AI推理加速相关论文...")
         # 使用parse方法分析全量论文
-        extractor.parse(analyze_all=True)
+        extractor.parse(analyze_all=True, output_format="csv")
     else:
         print("开始分析所有oral论文，筛选AI推理加速相关论文...")
         
@@ -39,7 +39,7 @@ def get_ai_papers_using_parse(papers_dir: str, oral_list_file: str = None, analy
             return
         
         # 使用parse方法分析指定的oral论文
-        extractor.parse(paper_filenames=paper_filenames, analyze_all=False)
+        extractor.parse(paper_filenames=paper_filenames, analyze_all=False, output_format="csv")
 
 def main():
     """
@@ -59,7 +59,7 @@ def main():
         return
     
     # 使用parse方法分析论文
-    get_ai_papers_using_parse(papers_dir, oral_list_file, analyze_all=True)
+    get_ai_papers_using_parse(papers_dir, oral_list_file, analyze_all=False)
 
 if __name__ == "__main__":
     main()
