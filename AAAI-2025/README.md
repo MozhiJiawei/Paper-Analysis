@@ -1,220 +1,210 @@
-# AAAI 2025 论文下载器
+# AAAI 2025 论文分析工具
 
-一个用于自动下载AAAI 2025会议论文的Python工具。该工具可以从AAAI官方网站批量下载所有论文的PDF文件，并根据论文标题自动命名文件。
+> 📚 专门用于AAAI 2025会议论文下载和AI推理加速相关论文筛选的工具模块
 
-## 功能特性
+## 🎯 核心功能
 
-### 🚀 核心功能
-- **批量下载**: 自动获取并下载AAAI 2025会议的所有论文PDF
-- **智能命名**: 根据论文标题自动生成规范的文件名
-- **断点续传**: 支持跳过已下载的文件，避免重复下载
-- **进度跟踪**: 实时显示下载进度和状态信息
+### 1. 论文批量下载
+- 自动下载AAAI 2025会议的全部论文PDF
+- 智能文件命名和组织
+- 支持断点续传和失败重试
 
-### 🛡️ 稳定性保障
-- **重试机制**: 网络请求失败时自动重试（最多5次）
-- **错误处理**: 完善的异常处理和错误日志记录
-- **超时控制**: 设置合理的请求超时时间，避免长时间等待
-- **随机User-Agent**: 使用多个User-Agent轮换，避免被网站屏蔽
+### 2. AI推理加速论文筛选
+- 基于关键词匹配算法筛选AI推理加速相关论文
+- 支持Oral论文优先分析
+- 生成详细的分析报告和统计数据
 
-### 📁 文件管理
-- **文件名清理**: 自动处理文件名中的非法字符
-- **长度限制**: 限制文件名长度，避免系统兼容性问题
-- **序号前缀**: 为文件添加序号前缀，便于排序和管理
-- **统计报告**: 下载完成后提供详细的统计信息
-
-## 项目结构
+## 📁 文件结构
 
 ```
 AAAI-2025/
-├── config.py              # 配置文件
-├── download_papers.py      # 主程序文件
-├── pages.html             # 网页源码（用于测试）
-└── README.md              # 说明文档
+├── download_papers.py              # 论文下载主程序
+├── get_ai_inference_related_paper.py  # AI推理加速论文筛选
+├── config.py                       # 下载配置文件
+├── oral_paper_filenames.txt         # Oral论文文件名列表
+├── oral_paper_list.txt             # Oral论文信息列表
+├── pages.html                      # 网页源码（用于调试）
+├── AAAI-2025-Papers/              # 下载的论文存储目录
+└── 输出文件/                        # 分析结果文件
+    ├── ai_inference_related_papers.csv    # AI相关论文（CSV格式）
+    ├── ai_inference_related_papers.txt    # AI相关论文（文本格式）
+    ├── non_ai_inference_papers.csv        # 非AI相关论文
+    ├── match_statistics.csv               # 匹配统计信息
+    └── oral_papers_about_ai_acceleration.xlsx  # Oral论文Excel报告
 ```
 
-## 安装依赖
+## 🚀 使用指南
 
-确保您的Python环境已安装以下依赖包：
+### 环境准备
 
-```bash
-pip install requests beautifulsoup4 pathlib
-```
-
-或者创建requirements.txt文件：
-
-```bash
-# requirements.txt
-requests>=2.25.0
-beautifulsoup4>=4.9.0
-```
-
-然后安装：
-```bash
-pip install -r requirements.txt
-```
-
-## 配置说明
-
-### 主要配置项 (config.py)
-
-| 配置项 | 默认值 | 说明 |
-|--------|--------|------|
-| `AAAI_ISSUE_URL` | AAAI官方链接 | 论文列表页面URL |
-| `DEFAULT_SAVE_DIR` | "AAAI-2025-Papers" | 默认保存目录 |
-| `DEFAULT_DELAY` | 1.5秒 | 下载间隔时间 |
-| `MAX_DOWNLOADS` | None | 限制下载数量（None=全部） |
-| `REQUEST_TIMEOUT` | 30秒 | 请求超时时间 |
-| `MAX_RETRY_ATTEMPTS` | 5次 | 最大重试次数 |
-| `MAX_FILENAME_LENGTH` | 150字符 | 最大文件名长度 |
-
-### 网络配置
-- **超时设置**: 页面获取10秒，文件下载30秒
-- **重试策略**: 失败后等待2秒再重试，最多重试5次
-- **User-Agent轮换**: 使用3个不同的浏览器标识
-
-## 使用方法
-
-### 基本使用
-
-1. **直接运行**:
+1. **启动Grobid服务**（必需）：
    ```bash
-   python download_papers.py
+   docker run --rm -it -p 8070:8070 lfoppiano/grobid:0.8.3
    ```
 
-2. **程序会自动执行以下步骤**:
-   - 获取AAAI 2025论文列表页面
-   - 解析所有论文的PDF链接和标题
-   - 创建保存目录
-   - 逐个下载PDF文件
-   - 生成下载统计报告
+2. **安装Python依赖**：
+   ```bash
+   pip install -r ../requirements.txt
+   ```
 
-### 自定义配置
+### 论文下载
 
-如需修改配置，请编辑 `config.py` 文件：
+```bash
+# 下载所有AAAI 2025论文
+python download_papers.py
+```
+
+**下载特性**：
+- 📥 自动获取论文列表并批量下载
+- 🏷️ 基于论文标题智能命名文件
+- 🔄 支持断点续传，跳过已下载文件
+- 📊 提供详细的下载进度和统计信息
+
+### AI推理加速论文筛选
+
+```bash
+# 筛选Oral论文中的AI推理加速相关论文（推荐）
+python get_ai_inference_related_paper.py
+
+# 或在Python中使用
+from utils.ai_acceleration_extractor import AiAccelerationExtractor
+
+extractor = AiAccelerationExtractor("AAAI-2025-Papers", ".")
+# 分析Oral论文
+extractor.parse(paper_filenames=oral_filenames, analyze_all=False, output_format="csv")
+# 分析全量论文
+extractor.parse(analyze_all=True, output_format="csv")
+```
+
+## 🔍 筛选算法说明
+
+### 关键词分类体系
+
+| 类别 | 权重 | 示例关键词 |
+|------|------|----------|
+| **核心推理加速** | 5分 | inference acceleration, quantization, model compression |
+| **高相关技术** | 4分 | early exit, dynamic inference, tensorrt |
+| **中等相关技术** | 3分 | kernel fusion, efficient transformer |
+| **支撑关键词** | 2分 | latency, throughput, efficiency |
+
+### 匹配策略
+- ✅ **包含策略**：匹配积分≥6分的论文被标记为AI推理加速相关
+- ❌ **排除策略**：包含训练相关、纯理论研究等强排除关键词的论文被排除
+- 🎯 **优先级**：标题中的关键词比摘要中的权重更高
+
+## 📊 输出格式
+
+### CSV格式（推荐）
+- `ai_inference_related_papers.csv` - 相关论文详细信息
+- `non_ai_inference_papers.csv` - 非相关论文信息  
+- `match_statistics.csv` - 匹配统计数据
+
+**CSV字段说明**：
+- 基本信息：标题、作者、组织、文件名
+- 匹配详情：匹配分数、各类关键词数量
+- 关键词：标题和摘要中的匹配关键词
+- 摘要预览：论文摘要前200字符
+
+### 文本格式
+- `ai_inference_related_papers.txt` - 人类可读的详细报告
+- `match_statistics.txt` - 统计信息文本格式
+
+## ⚙️ 配置选项
+
+### 下载配置 (config.py)
 
 ```python
-# 修改保存目录
-DEFAULT_SAVE_DIR = "我的论文集合"
+# 网络设置
+REQUEST_TIMEOUT = 30        # 请求超时时间
+MAX_RETRY_ATTEMPTS = 5      # 最大重试次数
+DEFAULT_DELAY = 1.5         # 下载间隔
 
-# 限制下载数量（仅下载前10篇）
-MAX_DOWNLOADS = 10
-
-# 调整下载间隔（更快下载，但可能被限制）
-DEFAULT_DELAY = 0.5
+# 文件设置  
+DEFAULT_SAVE_DIR = "AAAI-2025-Papers"
+MAX_FILENAME_LENGTH = 150   # 文件名长度限制
 ```
 
-## 输出示例
+### 筛选配置
 
-### 运行日志
+在 `get_ai_inference_related_paper.py` 中：
+- `analyze_all=True` - 分析全量论文
+- `analyze_all=False` - 仅分析Oral论文（默认）
+- `output_format="csv"` - 输出CSV格式
+- `output_format="txt"` - 输出文本格式
+
+## 📈 性能优化
+
+### 下载优化
+- 使用多个User-Agent轮换避免封锁
+- 智能重试机制处理网络波动
+- 流式下载大文件节省内存
+
+### 分析优化
+- PDF内容缓存机制（基于Grobid）
+- 分层关键词匹配算法
+- 批量处理提高效率
+
+## 🔧 故障排除
+
+### 常见问题
+
+1. **Grobid服务未启动**
+   ```bash
+   # 检查服务状态
+   curl http://localhost:8070
+   # 重新启动Grobid
+   docker run --rm -it -p 8070:8070 lfoppiano/grobid:0.8.3
+   ```
+
+2. **下载失败率高**
+   - 检查网络连接
+   - 增加重试次数和延迟时间
+   - 检查AAAI网站访问状态
+
+3. **论文分析结果异常**
+   - 确认PDF文件完整性
+   - 检查Grobid服务响应
+   - 验证oral_paper_filenames.txt文件格式
+
+## 📝 使用示例
+
+### 完整工作流程
+
+```bash
+# 1. 启动Grobid服务
+docker run -d --name grobid -p 8070:8070 lfoppiano/grobid:0.8.3
+
+# 2. 下载论文
+python download_papers.py
+
+# 3. 筛选AI推理加速相关论文
+python get_ai_inference_related_paper.py
+
+# 4. 查看结果
+ls -la *.csv *.txt *.xlsx
 ```
-2025-01-XX XX:XX:XX - __main__ - INFO - 开始AAAI 2025论文下载程序
-2025-01-XX XX:XX:XX - __main__ - INFO - 步骤1: 获取页面内容
-2025-01-XX XX:XX:XX - __main__ - INFO - 成功获取页面内容
-2025-01-XX XX:XX:XX - __main__ - INFO - 步骤2: 解析PDF链接和标题
-2025-01-XX XX:XX:XX - __main__ - INFO - 找到 XXX 个文章摘要容器
-2025-01-XX XX:XX:XX - __main__ - INFO - 找到 XXX 个PDF文件
-2025-01-XX XX:XX:XX - __main__ - INFO - 步骤4: 开始下载PDF文件
-2025-01-XX XX:XX:XX - __main__ - INFO - 进度: 1/XXX - [PDF链接]
-2025-01-XX XX:XX:XX - __main__ - INFO - 论文标题: [论文标题]
-2025-01-XX XX:XX:XX - __main__ - INFO - 开始下载: 001_论文标题.pdf
-2025-01-XX XX:XX:XX - __main__ - INFO - 下载完成: 001_论文标题.pdf
+
+### 自定义分析
+
+```python
+from utils.ai_acceleration_extractor import AiAccelerationExtractor
+
+# 创建提取器
+extractor = AiAccelerationExtractor("AAAI-2025-Papers", ".")
+
+# 分析特定论文
+specific_papers = ["paper1.pdf", "paper2.pdf"]
+extractor.parse(paper_filenames=specific_papers, output_format="both")
 ```
 
-### 最终统计
-```
-==================================================
-下载任务完成总结:
-成功下载: XXX 个文件
-下载失败: 0 个文件
-文件总数: XXX 个
-总大小: XXX.XX MB
-==================================================
-```
+## 📊 统计信息
 
-## 文件命名规则
+通过运行筛选程序，您将获得：
+- 论文总数和AI相关论文数量
+- 各类关键词匹配统计
+- 不同组织的研究分布
+- 详细的匹配得分分析
 
-下载的PDF文件按以下规则命名：
-- 格式：`序号_清理后的标题.pdf`
-- 示例：`001_Deep_Learning_for_Natural_Language_Processing.pdf`
-- 特殊字符会被替换为下划线
-- 文件名长度限制在150字符以内
+---
 
-## 错误处理
-
-### 常见问题及解决方案
-
-1. **网络连接失败**
-   - 程序会自动重试5次
-   - 检查网络连接和防火墙设置
-
-2. **文件下载失败**
-   - 不完整的文件会被自动删除
-   - 重新运行程序会跳过已下载的文件
-
-3. **解析失败**
-   - 可能是网页结构发生变化
-   - 检查 `config.py` 中的CSS选择器配置
-
-4. **磁盘空间不足**
-   - 确保有足够的存储空间
-   - 可以设置 `MAX_DOWNLOADS` 限制下载数量
-
-## 技术实现
-
-### 核心模块
-
-1. **网页解析** (`extract_pdf_links_with_titles`)
-   - 使用BeautifulSoup解析HTML
-   - 提取论文标题和PDF链接
-   - 支持CSS选择器配置
-
-2. **文件下载** (`download_pdf`)
-   - 流式下载大文件
-   - 支持断点续传
-   - 完整的错误处理
-
-3. **文件管理** (`sanitize_filename`)
-   - 清理非法字符
-   - 长度限制
-   - 编码处理
-
-### 依赖库
-- `requests`: HTTP请求处理
-- `beautifulsoup4`: HTML解析
-- `pathlib`: 路径操作
-- `logging`: 日志记录
-
-## 注意事项
-
-### 使用建议
-- 🕐 建议在网络状况良好时运行
-- 💾 确保有足够的磁盘空间（通常需要几GB）
-- ⏱️ 完整下载可能需要较长时间，请耐心等待
-- 🔄 如果中断，重新运行会自动跳过已下载的文件
-
-### 法律声明
-- 本工具仅用于学术研究目的
-- 请遵守AAAI网站的使用条款
-- 下载的论文版权归原作者所有
-- 请勿用于商业用途
-
-### 技术限制
-- 依赖于AAAI网站的HTML结构
-- 网站结构变化可能影响解析功能
-- 受网络状况和服务器响应速度影响
-
-## 更新日志
-
-### v1.0.0
-- 初始版本发布
-- 支持AAAI 2025论文批量下载
-- 完整的错误处理和重试机制
-- 智能文件命名和管理功能
-
-## 贡献
-
-欢迎提交Issue和Pull Request来改进这个工具！
-
-## 许可证
-
-本项目采用MIT许可证，详见LICENSE文件。 
+> 💡 **提示**：建议先运行Oral论文分析（速度快），然后根据需要决定是否进行全量分析。 
