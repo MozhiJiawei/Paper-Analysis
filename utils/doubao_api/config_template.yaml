@@ -1,0 +1,12 @@
+# 豆包API配置文件模板
+# 复制此文件为 config.yaml 并填写您的实际配置信息
+
+doubao:
+  api_key: "YOUR_API_KEY_HERE"  # 请替换为您的实际API密钥
+  base_url: "https://ark.cn-beijing.volces.com/api/v3"
+  model: "doubao-seed-1-6-250615"
+
+# 使用说明：
+# 1. 复制此文件为 config.yaml
+# 2. 将 YOUR_API_KEY_HERE 替换为您的实际API密钥
+# 3. 根据需要调整 base_url 和 model 参数 

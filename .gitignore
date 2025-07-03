@@ -1,5 +1,6 @@
 # 下载目录
-AAAI-2025-Papers/
+AAAI-2025-Papers*/
+ai_acceleration_analysis_*/
 .idea/
 
 # 生成结果
@@ -202,3 +203,11 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# API Keys and Configuration Files
+# 包含敏感信息的配置文件
+**/config.yaml
+config.yaml
+.env.local
+*.key
+secrets.json

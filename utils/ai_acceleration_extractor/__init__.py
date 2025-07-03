@@ -5,10 +5,12 @@ AI加速论文提取器模块
 
 from .ai_acceleration_extractor import (
     AiAccelerationExtractor,
+    ai_acceleration_parse
 )
 
 __all__ = [
     'AiAccelerationExtractor',
+    'ai_acceleration_parse'
 ]
 
 __version__ = "1.0.0" 

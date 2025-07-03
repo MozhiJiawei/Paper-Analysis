@@ -5,12 +5,14 @@ PDF提取器模块
 
 from .pdf_extractor import (
     extract_paper_abstract,
-    abstract_parser
+    abstract_parser,
+    full_parser
 )
 
 __all__ = [
     'extract_paper_abstract',
-    'abstract_parser'
+    'abstract_parser',
+    'full_parser'
 ]
 
 __version__ = "1.0.0" 

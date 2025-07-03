@@ -12,6 +12,10 @@ def abstract_parser(pdf_path: str):
     client = GrobidClient(config_path=_get_config_path())
     client.process("processHeaderDocument", pdf_path, n=20)
 
+def full_parser(pdf_path: str):
+    client = GrobidClient(config_path=_get_config_path())
+    client.process("processFulltextDocument", pdf_path, n=20)
+
 def extract_paper_abstract(pdf_file_path: str) -> Dict:
     """
     从PDF文件中提取论文信息

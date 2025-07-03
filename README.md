@@ -45,7 +45,7 @@
 2. **启动Grobid服务器**
    ```bash
    # 使用Docker一键启动（推荐）
-   docker run --rm -it -p 8070:8070 lfoppiano/grobid:0.8.3
+   docker run --rm -it -p 8070:8070 lfoppiano/grobid:latest-crf
    ```
 
 3. **验证环境**
