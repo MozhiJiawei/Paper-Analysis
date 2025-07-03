@@ -435,3 +435,75 @@ docker run --rm -it -p 8070:8070 lfoppiano/grobid:0.8.3
 🌟 **如果这个项目对您有帮助，请给我们一个Star！** 🌟
 
 </div>
+
+```mermaid
+graph TD
+    A["请求接收<br/>LLMRequest"] --> B{"PD模式<br/>是否启用?"}
+    
+    B -->|是| C["初始化PD配置文件处理器<br/>pdThreshold, prefixScorer"]
+    B -->|否| D["初始化仅Decode配置"]
+    
+    C --> E["开始Decode阶段调度"]
+    D --> E
+    
+    E --> F["角色过滤器<br/>选择role=decode的Pod"]
+    F --> G["多重评分器并行执行"]
+    
+    G --> G1["负载感知评分器<br/>队列长度评估<br/>score = 0.5*(1-queue/threshold)"]
+    G --> G2["前缀感知评分器<br/>prompt前缀匹配<br/>score = blocks*blockSize/promptLen"]
+    G --> G3["KV缓存感知评分器<br/>Redis缓存索引查询<br/>实时缓存状态评分"]
+    G --> G4["会话亲和性评分器<br/>session token解析<br/>相同节点=1.0, 其他=0.0"]
+    
+    G1 --> H["加权评分求和<br/>finalScore = Σ(weight[i] × score[i])"]
+    G2 --> H
+    G3 --> H
+    G4 --> H
+    
+    H --> I["MaxScorePicker<br/>选择最高分节点"]
+    I --> J["Decode阶段完成<br/>获得targetPod"]
+    
+    J --> K{"PD模式下<br/>需要Prefill?"}
+    
+    K -->|检查条件| L["计算前缀缓存命中率<br/>hitPercentage = prefixScorer.GetCachedPercentage()"]
+    L --> M["计算非缓存长度<br/>nonCachedLength = (1-hitPercentage) × promptLen"]
+    M --> N{"nonCachedLength < pdThreshold?"}
+    
+    N -->|是| O["仅使用Decode结果<br/>跳过Prefill"]
+    N -->|否| P["开始Prefill阶段调度"]
+    
+    P --> Q["角色过滤器<br/>选择role=prefill的Pod"]
+    Q --> R["多重评分器并行执行<br/>(同Decode阶段)"]
+    R --> S["加权评分求和"]
+    S --> T["MaxScorePicker选择节点"]
+    T --> U["Prefill阶段完成"]
+    
+    U --> V["组装调度结果<br/>PrimaryProfile: decode<br/>Profiles: {decode, prefill}"]
+    O --> W["组装调度结果<br/>PrimaryProfile: decode<br/>Profiles: {decode}"]
+    
+    K -->|否| O
+    
+    V --> X["设置路由头信息<br/>返回调度结果"]
+    W --> X
+    
+    X --> Y["后续处理<br/>- 会话token设置<br/>- 前缀缓存更新<br/>- 指标统计"]
+    
+    Y --> Z["调度完成"]
+    
+    %% 错误处理流程
+    I -->|无可用节点| ERROR1["调度失败<br/>no available decode workers"]
+    T -->|无可用节点| ERROR2["Prefill失败<br/>降级为仅Decode"]
+    ERROR2 --> W
+    
+    %% 样式定义
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef scorer fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    
+    class A,Z startEnd
+    class B,K,N decision
+    class C,D,E,F,H,I,J,L,M,O,P,Q,R,S,T,U,V,W,X,Y process
+    class G1,G2,G3,G4 scorer
+    class ERROR1,ERROR2 error
+```
