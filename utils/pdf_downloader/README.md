@@ -1,236 +1,243 @@
-# PDF下载器模块说明
+# PDF下载器模块
 
-## 概述
+这个模块提供了强大的PDF文件下载功能，支持从各种来源下载PDF文件，包括直接URL链接和arXiv论文库。
 
-`pdf_downloader.py` 是一个独立的PDF批量下载模块，从原有的 `download_papers.py` 中提取并重构而来。它提供了清晰、易用的接口，支持单个PDF下载和批量PDF下载，具有重试机制、错误处理和进度监控功能。
+## 功能特性
 
-## 主要特性
+### 通用PDF下载器
+- 支持单个PDF文件下载
+- 支持批量PDF文件下载
+- 自动重试机制
+- 下载进度跟踪
+- 文件名重复处理
+- 下载统计信息
 
-- ✅ **批量下载**：支持从URL列表或包含标题信息的字典列表下载PDF
-- ✅ **重试机制**：自动重试失败的下载，提高成功率
-- ✅ **文件名处理**：智能生成文件名，支持从标题或URL提取
-- ✅ **进度监控**：详细的日志输出，实时显示下载进度
-- ✅ **错误处理**：优雅处理网络错误和文件操作错误
-- ✅ **统计信息**：提供下载结果统计和目录分析
-- ✅ **配置灵活**：可自定义下载参数（超时、重试次数、延迟等）
+### arXiv论文下载器 ⭐ **新功能**
+- 支持按论文标题搜索并下载
+- 支持按arXiv ID直接下载
+- 批量下载多篇论文
+- 自动文件名清理
+- 智能搜索匹配
 
 ## 安装依赖
 
 ```bash
-pip install requests beautifulsoup4
+pip install -r requirements.txt
 ```
+
+主要依赖包括：
+- `requests` - HTTP请求
+- `beautifulsoup4` - HTML解析
+- `arxiv` - arXiv API客户端
 
 ## 使用方法
 
-### 1. 便捷函数接口（推荐用于简单场景）
+### 1. arXiv论文下载
 
-#### 下载单个PDF文件
+#### 下载单篇论文
+
+```python
+from arxiv_downloader import download_single_pdf_from_arxiv
+
+# 方式1：使用论文标题
+result = download_single_pdf_from_arxiv(
+    paper_name="Attention Is All You Need",
+    save_dir="papers"
+)
+
+# 方式2：使用arXiv ID  
+result = download_single_pdf_from_arxiv(
+    paper_name="1706.03762",
+    save_dir="papers"
+)
+
+# 检查结果
+if result["Attention Is All You Need"] == 0:
+    print("下载成功!")
+elif result["Attention Is All You Need"] == 1:
+    print("未找到论文")
+else:
+    print("下载失败")
+```
+
+#### 批量下载论文
+
+```python
+from arxiv_downloader import download_pdfs_from_arxiv
+
+# 论文列表（可混合使用标题和ID）
+papers = [
+    "Attention Is All You Need",
+    "1706.03762",  # 同一篇论文的ID
+    "BERT: Pre-training of Deep Bidirectional Transformers",
+    "GPT-3: Language Models are Few-Shot Learners"
+]
+
+# 批量下载
+results = download_pdfs_from_arxiv(
+    paper_name_list=papers,
+    save_dir="research_papers"
+)
+
+# 统计结果
+success_count = sum(1 for status in results.values() if status == 0)
+print(f"成功下载 {success_count}/{len(results)} 篇论文")
+```
+
+### 2. 普通PDF文件下载
+
+#### 下载单个PDF
 
 ```python
 from pdf_downloader import download_single_pdf
 
-# 下载单个PDF
 success = download_single_pdf(
     url="https://example.com/paper.pdf",
     save_dir="downloads",
     filename="my_paper.pdf"
 )
-print(f"下载{'成功' if success else '失败'}")
 ```
 
-#### 批量下载PDF文件
+#### 批量下载PDF
 
 ```python
 from pdf_downloader import download_pdfs
 
-# 方式1: 从URL列表下载
+# URL列表
 pdf_urls = [
     "https://example.com/paper1.pdf",
-    "https://example.com/paper2.pdf",
-    "https://example.com/paper3.pdf"
+    "https://example.com/paper2.pdf"
 ]
 
 results = download_pdfs(
     pdf_info_list=pdf_urls,
-    save_dir="downloads",
-    delay=1.0
+    save_dir="batch_downloads"
 )
-print(f"成功: {results['success']}, 失败: {results['failed']}")
+```
 
-# 方式2: 从包含标题的字典列表下载
+#### 带标题的PDF下载
+
+```python
+# 包含标题信息的PDF列表
 pdf_info_list = [
     {
         "url": "https://example.com/paper1.pdf",
-        "title": "Deep Learning for Computer Vision"
+        "title": "深度学习论文"
     },
     {
         "url": "https://example.com/paper2.pdf", 
-        "title": "Natural Language Processing"
+        "title": "自然语言处理研究"
     }
 ]
 
-results = download_pdfs(pdf_info_list, save_dir="papers")
+results = download_pdfs(
+    pdf_info_list=pdf_info_list,
+    save_dir="titled_downloads"
+)
 ```
 
-### 2. 类接口（推荐用于复杂场景）
+## 返回值说明
+
+### arXiv下载器返回值
+
+`Dict[str, int]` 格式，其中：
+- `0`: 下载成功
+- `1`: 搜索失败（未找到论文）  
+- `2`: 下载失败
+
+### 普通PDF下载器返回值
+
+- 单个下载：`bool` （True=成功，False=失败）
+- 批量下载：`{"success": int, "failed": int}`
+
+## 高级用法
+
+### 使用PDFDownloader类
 
 ```python
 from pdf_downloader import PDFDownloader
 
-# 创建下载器实例
 downloader = PDFDownloader(
-    save_dir="AAAI-2025-Papers",
-    delay=1.5,
-    max_retries=5,
-    timeout=30,
-    max_filename_length=150
+    save_dir="custom_downloads",
+    delay=2.0,  # 下载间隔
+    max_retries=5,  # 最大重试次数
+    timeout=60  # 超时时间
 )
 
-# 下载PDF列表
 results = downloader.download_pdfs_from_list(pdf_info_list)
-
-# 获取下载统计
-stats = downloader.get_download_stats()
-print(f"总共下载了 {stats['count']} 个文件，大小 {stats['total_size_mb']:.2f} MB")
-```
-
-## API参考
-
-### PDFDownloader 类
-
-#### 构造函数
-
-```python
-PDFDownloader(
-    save_dir: str = "downloads",           # 保存目录
-    delay: float = 1.0,                    # 下载间隔（秒）
-    max_retries: int = 3,                  # 最大重试次数
-    timeout: int = 30,                     # 请求超时时间（秒）
-    max_filename_length: int = 150         # 最大文件名长度
-)
-```
-
-#### 主要方法
-
-##### `download_single_pdf(url, filename=None)`
-下载单个PDF文件
-
-**参数:**
-- `url` (str): PDF的URL
-- `filename` (str, 可选): 保存的文件名
-
-**返回:** `bool` - 下载是否成功
-
-##### `download_pdfs_from_list(pdf_info_list)`
-批量下载PDF文件
-
-**参数:**
-- `pdf_info_list` (List[Union[str, Dict]]): PDF信息列表，支持以下格式：
-  - 字符串列表: `["url1", "url2", ...]`
-  - 字典列表: `[{"url": "url1", "title": "title1"}, ...]`
-
-**返回:** `Dict[str, int]` - 下载结果统计 `{"success": int, "failed": int}`
-
-##### `get_download_stats()`
-获取下载目录的统计信息
-
-**返回:** `Dict` - 包含文件数量、总大小和文件列表的统计信息
-
-### 便捷函数
-
-##### `download_pdfs(pdf_info_list, save_dir="downloads", delay=1.0, max_retries=3, timeout=30)`
-便捷的批量下载函数
-
-##### `download_single_pdf(url, save_dir="downloads", filename=None, max_retries=3, timeout=30)`
-便捷的单文件下载函数
-
-## 与原有代码的集成
-
-如果您之前使用 `download_papers.py` 中的函数，可以很容易地迁移到新的模块：
-
-### 替换原有的 `download_all_pdfs` 函数
-
-```python
-# 原有代码
-from download_papers import download_all_pdfs
-results = download_all_pdfs(pdf_info_list, page_id, save_dir, delay)
-
-# 新代码
-from pdf_downloader import PDFDownloader
-downloader = PDFDownloader(save_dir=save_dir, delay=delay)
-results = downloader.download_pdfs_from_list(pdf_info_list)
-```
-
-### 替换原有的 `check_download_results` 函数
-
-```python
-# 原有代码
-from download_papers import check_download_results
-stats = check_download_results(save_dir)
-
-# 新代码
-from pdf_downloader import PDFDownloader
-downloader = PDFDownloader(save_dir=save_dir)
 stats = downloader.get_download_stats()
 ```
 
-## 配置说明
-
-### 常用配置参数
-
-- **save_dir**: 下载文件保存目录
-- **delay**: 下载间隔时间（秒），避免对服务器造成过大压力
-- **max_retries**: 最大重试次数，网络不稳定时增加此值
-- **timeout**: 请求超时时间，网络较慢时增加此值
-- **max_filename_length**: 文件名最大长度，避免操作系统限制
-
-### 建议配置
+### 混合下载工作流
 
 ```python
-# 生产环境建议配置
-downloader = PDFDownloader(
-    save_dir="papers",
-    delay=2.0,        # 适中的延迟，避免被服务器限制
-    max_retries=5,    # 较多的重试次数
-    timeout=60,       # 较长的超时时间
-    max_filename_length=100  # 合理的文件名长度
+# 组合使用两种下载器
+from arxiv_downloader import download_pdfs_from_arxiv
+from pdf_downloader import download_pdfs
+
+# 第一步：下载arXiv论文
+foundational_papers = [
+    "Attention Is All You Need",
+    "BERT: Pre-training of Deep Bidirectional Transformers"
+]
+
+arxiv_results = download_pdfs_from_arxiv(
+    paper_name_list=foundational_papers,
+    save_dir="papers/foundational"
+)
+
+# 第二步：下载会议论文
+conference_papers = [
+    {
+        "url": "https://conference.com/paper1.pdf",
+        "title": "最新研究成果"
+    }
+]
+
+pdf_results = download_pdfs(
+    pdf_info_list=conference_papers,
+    save_dir="papers/conferences"
 )
 ```
+
+## 注意事项
+
+1. **arXiv搜索准确性**：使用准确的论文标题或arXiv ID可以获得最佳搜索结果
+2. **文件名处理**：系统会自动清理文件名中的特殊字符
+3. **重复文件**：如果文件已存在，会自动添加数字后缀
+4. **网络连接**：确保网络连接稳定，特别是下载大文件时
+5. **存储空间**：确保有足够的磁盘空间存储下载的PDF文件
+6. **SSL证书问题**：如果遇到SSL证书验证错误，程序会自动配置SSL设置来解决此问题
+7. **性能优化**：SSL配置在一次脚本执行中只会执行一次，避免重复设置
+
+### 常见问题
+
+#### SSL证书验证失败
+如果遇到类似以下错误：
+```
+[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate
+```
+
+程序会自动处理此问题，无需手动干预。SSL配置会在第一次调用arXiv下载函数时自动执行，后续调用不会重复配置。如果问题持续存在，请检查网络连接和防火墙设置。
+
+#### 性能优化说明
+为了提高效率，SSL配置函数使用了全局状态跟踪，确保在同一次脚本执行中只配置一次SSL设置。这意味着：
+- 第一次调用任何arXiv下载函数时会看到"已配置SSL设置"的消息
+- 后续调用不会重复显示此消息，但SSL设置仍然有效
+
+## 完整示例
+
+查看 `example_usage.py` 文件获取更多详细的使用示例。
 
 ## 错误处理
 
-模块内置了完善的错误处理机制：
-
-- **网络错误**: 自动重试，记录详细错误信息
-- **文件操作错误**: 清理不完整的文件，避免磁盘空间浪费
-- **无效URL**: 跳过无效链接，继续处理其他文件
-- **文件名冲突**: 自动重命名，避免覆盖现有文件
-
-## 日志配置
-
-模块使用Python标准日志库，您可以根据需要配置日志级别：
+所有下载函数都包含异常处理，会在出现错误时返回相应的状态码。建议在生产环境中添加适当的日志记录：
 
 ```python
 import logging
 
-# 配置详细日志
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO)
 
-# 如果只想看到错误信息
-logging.getLogger('pdf_downloader').setLevel(logging.ERROR)
-```
-
-## 最佳实践
-
-1. **合理设置延迟**: 避免对目标服务器造成过大压力
-2. **监控磁盘空间**: 大量下载前确保有足够的存储空间
-3. **网络稳定性**: 网络不稳定时增加重试次数和超时时间
-4. **错误处理**: 检查返回的统计信息，处理失败的下载
-5. **日志监控**: 关注日志输出，及时发现和解决问题
-
-## 示例代码
-
-完整的使用示例请参考 `example_usage.py` 文件，其中包含了各种使用场景的详细演示。 
+# 使用下载函数
+result = download_single_pdf_from_arxiv("论文标题")
+``` 

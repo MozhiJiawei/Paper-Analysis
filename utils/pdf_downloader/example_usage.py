@@ -5,6 +5,7 @@ PDF下载器使用示例
 
 import logging
 from pdf_downloader import PDFDownloader, download_pdfs, download_single_pdf
+from arxiv_downloader import download_pdfs_from_arxiv, download_single_pdf_from_arxiv
 
 # 配置日志
 logging.basicConfig(
@@ -167,6 +168,74 @@ def example_5_integrate_with_existing_code():
     print()
 
 
+def example_6_download_single_arxiv_paper():
+    """示例6：下载单篇arXiv论文"""
+    print("=== 示例6：下载单篇arXiv论文 ===")
+    print("注意：如果遇到SSL证书验证错误，程序会自动配置SSL设置来解决")
+    print()
+    
+    # 方式1：使用论文标题搜索
+    print("方式1：使用论文标题搜索")
+    result1 = download_single_pdf_from_arxiv(
+        paper_name="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        save_dir="arxiv_downloads"
+    )
+    status1 = "成功" if list(result1.values())[0] == 0 else "失败"
+    print(f"按标题搜索结果: {status1} - {result1}")
+    print()
+    
+    # 方式2：使用arXiv ID
+    print("方式2：使用arXiv ID")
+    result2 = download_single_pdf_from_arxiv(
+        paper_name="1706.03762",  # Transformer论文的arXiv ID
+        save_dir="arxiv_downloads"
+    )
+    status2 = "成功" if list(result2.values())[0] == 0 else "失败"
+    print(f"按ID搜索结果: {status2} - {result2}")
+    print()
+
+
+def example_7_download_multiple_arxiv_papers():
+    """示例7：批量下载多篇arXiv论文"""
+    print("=== 示例7：批量下载多篇arXiv论文 ===")
+    print("注意：SSL配置只会在第一次调用时执行")
+    print()
+    
+    # 论文列表（混合使用标题和ID）
+    paper_list = [
+        "Wide Neural Networks Trained with Weight Decay Provably Exhibit Neural Collapse",
+        "A Probabilistic Perspective on Unlearning and Alignment for Large Language Models",
+        "Variational Diffusion Posterior Sampling with Midpoint Guidance",
+        "Amortized Control of Continuous State Space Feynman-Kac Model for Irregular Time Series",
+        "Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning",
+        "Towards Understanding Why FixMatch Generalizes Better Than Supervised Learning",
+        "Exploring The Loss Landscape Of Regularized Neural Networks Via Convex Duality",
+        "Turning Up the Heat: Min-p Sampling for Creative and Coherent LLM Outputs"
+    ]
+    
+    # 批量下载
+    results = download_pdfs_from_arxiv(
+        paper_name_list=paper_list,
+        save_dir="arxiv_batch_downloads"
+    )
+    
+    print("下载结果:")
+    for paper_name, status in results.items():
+        status_text = {
+            0: "成功",
+            1: "搜索失败",
+            2: "下载失败"
+        }.get(status, "未知状态")
+        print(f"  - {paper_name}: {status_text}")
+    
+    # 统计结果
+    success_count = sum(1 for status in results.values() if status == 0)
+    total_count = len(results)
+    print(f"\n总计: {success_count}/{total_count} 下载成功")
+    print()
+
+
+
 def main():
     """运行所有示例"""
     print("PDF下载器使用示例")
@@ -175,12 +244,14 @@ def main():
     # 注意：以下示例使用的都是示例URL，实际运行时会失败
     # 在实际使用时，请替换为真实的PDF URL
     
-    example_1_download_single_pdf()
-    example_2_download_pdf_list_simple()
-    example_3_download_pdf_list_with_titles()
-    example_4_use_downloader_class()
-    example_5_integrate_with_existing_code()
-    
+    # example_1_download_single_pdf()
+    # example_2_download_pdf_list_simple()
+    # example_3_download_pdf_list_with_titles()
+    # example_4_use_downloader_class()
+    # example_5_integrate_with_existing_code()
+    # example_6_download_single_arxiv_paper()
+    example_7_download_multiple_arxiv_papers()
+
     print("所有示例执行完成！")
     print("\n注意：示例中使用的是虚拟URL，实际使用时请替换为真实的PDF链接。")
 
