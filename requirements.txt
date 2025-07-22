@@ -2,7 +2,7 @@
 # 安装方法: pip install -r requirements.txt
 
 # 核心依赖 - PDF处理和Grobid客户端
-grobid-client
+grobid-client-python
 
 # HTML/XML解析
 beautifulsoup4

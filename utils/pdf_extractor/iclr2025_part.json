@@ -1,0 +1,610 @@
+[
+    {
+        "title": "DataEnvGym: Data Generation Agents in Teacher Environments with Student Feedback",
+        "status": "Spotlight",
+        "track": "main",
+        "site": "https://iclr.cc/virtual/2025/poster/31276",
+        "id": "00SnKBGTsz",
+        "author_site": "Zaid Khan, Elias Stengel-Eskin, Jaemin Cho, Mohit Bansal",
+        "tldr": "",
+        "abstract": "The process of creating training data to teach models is currently driven by humans, who manually analyze model weaknesses and plan how to create data that improves a student model. Recent approaches using large language models (LLMs) as annotators reduce human annotation effort, but still require humans to interpret feedback from evaluations and control the LLM to produce data the student needs. Automating this labor-intensive process by creating autonomous data generation agents \u2013 or teachers \u2013 is desirable, but requires environments that can simulate the feedback-driven, iterative, closed loop of data creation. To enable rapid and scalable testing for such agents and their modules, we introduce DataEnvGym, a testbed of teacher environments for data generation agents. DataEnvGym frames data generation as a sequential decision-making task, involving an agent consisting of a data generation policy (which generates a plan for creating training data) and a data generation engine (which transforms the plan into data), inside an environment that provides feedback from a student. The agent\u2019s end goal is to improve student model performance. Students are iteratively trained and evaluated on generated data, with their feedback (in the form of errors or weak skills) being reported to the agent after each iteration. As a general-purpose testbed, DataEnvGym includes multiple instantiations of teacher environments across three levels of structure in the state representation and action space, with varying levels of scaffolding support. More structured environments are based on automatically-inferred skills and offer a higher degree of interpretability and control over the curriculum. We support developing and testing data generation agents in four diverse tasks covering text, images, and actions (mathematics, programming, visual question answering, and tool-use) and test multiple student and teacher models. We find that example agents in our teaching environments can iteratively improve students across diverse tasks and settings. Moreover, we show that environments can teach different skill levels and can be used to test variants of key modules, pointing to directions of future work in improving data generation agents, engines, and feedback mechanisms. Project page: https://DataEnvGym.github.io.",
+        "keywords": "iterative data generation;llm agent;lifelong learning",
+        "primary_area": "foundation or frontier models, including LLMs",
+        "supplementary_material": "",
+        "author": "Zaid Khan;Elias Stengel-Eskin;Jaemin Cho;Mohit Bansal",
+        "authorids": "~Zaid_Khan1;~Elias_Stengel-Eskin1;~Jaemin_Cho1;~Mohit_Bansal2",
+        "gender": "Not Specified;M;M;M",
+        "homepage": "https://zaidkhan.me;https://esteng.github.io;https://j-min.io;https://www.cs.unc.edu/~mbansal/",
+        "dblp": "259/1127-1;212/6138;130/8348-1;32/5243.html",
+        "google_scholar": "uXXocfgAAAAJ;gr_ZVSQAAAAJ;IbQZoHQAAAAJ;DN8QtscAAAAJ",
+        "orcid": ";0000-0002-6689-505X;0000-0002-1558-6169;",
+        "linkedin": "https://linkedin.com/in/khan-zaid;;;",
+        "or_profile": "~Zaid_Khan1;~Elias_Stengel-Eskin1;~Jaemin_Cho1;~Mohit_Bansal2",
+        "aff": "University of North Carolina at Chapel Hill;University of North Carolina at Chapel Hill;University of North Carolina, Chapel Hill;University of North Carolina at Chapel Hill",
+        "aff_domain": "unc.edu;cs.unc.edu;unc.edu;unc.edu",
+        "position": "PhD student;Postdoc;PhD student;Full Professor",
+        "bibtex": "@inproceedings{\nkhan2025dataenvgym,\ntitle={DataEnvGym: Data Generation Agents in Teacher Environments with Student Feedback},\nauthor={Zaid Khan and Elias Stengel-Eskin and Jaemin Cho and Mohit Bansal},\nbooktitle={The Thirteenth International Conference on Learning Representations},\nyear={2025},\nurl={https://openreview.net/forum?id=00SnKBGTsz}\n}",
+        "github": "",
+        "project": "",
+        "reviewers": "rVo8;wuGW;c5nB;VQ9Y",
+        "pdf_size": 4218376,
+        "rating": "6;8;8;8",
+        "confidence": "4;4;3;4",
+        "soundness": "2;3;4;4",
+        "contribution": "3;3;3;4",
+        "presentation": "3;2;3;3",
+        "wc_summary": "72;188;70;81",
+        "wc_strengths": "23;144;91;46",
+        "wc_weaknesses": "219;326;44;176",
+        "wc_questions": "69;431;124;71",
+        "wc_review": "383;1089;329;374",
+        "wc_reply_reviewers": "219;39;137;22",
+        "wc_reply_authors": "506;536;834;893",
+        "reply_reviewers": "2;1;1;1",
+        "reply_authors": "4;2;3;3",
+        "rating_avg": [
+            7.5,
+            0.8660254037844386
+        ],
+        "confidence_avg": [
+            3.75,
+            0.4330127018922193
+        ],
+        "soundness_avg": [
+            3.25,
+            0.82915619758885
+        ],
+        "contribution_avg": [
+            3.25,
+            0.4330127018922193
+        ],
+        "presentation_avg": [
+            2.75,
+            0.4330127018922193
+        ],
+        "wc_summary_avg": [
+            102.75,
+            49.39319285083725
+        ],
+        "wc_strengths_avg": [
+            76.0,
+            46.25472948791291
+        ],
+        "wc_weaknesses_avg": [
+            191.25,
+            101.04794654024396
+        ],
+        "wc_questions_avg": [
+            173.75,
+            150.152214435885
+        ],
+        "wc_review_avg": [
+            543.75,
+            315.4642412382107
+        ],
+        "wc_reply_reviewers_avg": [
+            104.25,
+            79.47129985095248
+        ],
+        "wc_reply_authors_avg": [
+            692.25,
+            172.84150977123522
+        ],
+        "reply_reviewers_avg": [
+            1.25,
+            0.4330127018922193
+        ],
+        "reply_authors_avg": [
+            3.0,
+            0.7071067811865476
+        ],
+        "replies_avg": [
+            24,
+            0
+        ],
+        "authors#_avg": [
+            4,
+            0
+        ],
+        "corr_rating_confidence": -0.3333333333333333,
+        "gs_citation": 1,
+        "gs_cited_by_link": "https://scholar.google.com/scholar?cites=338621081597888061&as_sdt=5,33&sciodt=0,33&hl=en",
+        "gs_version_total": 4,
+        "openreview": "https://openreview.net/forum?id=00SnKBGTsz",
+        "pdf": "https://openreview.net/pdf?id=00SnKBGTsz",
+        "email": "unc.edu;cs.unc.edu;unc.edu;unc.edu",
+        "author_num": 4,
+        "aff_unique_index": "0;0;0;0",
+        "aff_unique_norm": "University of North Carolina",
+        "aff_unique_dep": "",
+        "aff_unique_url": "https://www.unc.edu",
+        "aff_unique_abbr": "UNC",
+        "aff_campus_unique_index": "0;0;0;0",
+        "aff_campus_unique": "Chapel Hill",
+        "aff_country_unique_index": "0;0;0;0",
+        "aff_country_unique": "United States"
+    },
+    {
+        "id": "00ezkB2iZf",
+        "title": "MedFuzz: Exploring the Robustness of Large Language Models in Medical Question Answering",
+        "track": "main",
+        "status": "Reject",
+        "tldr": "",
+        "abstract": "Large language models (LLM) have achieved impressive performance on medical question-answering benchmarks. However, high benchmark accuracy does not imply robust performance in real-world clinical settings. Medical question-answering benchmarks rely on assumptions consistent with quantifying LLM performance but that may not hold in the open world of the clinic. Yet LLMs learn broad knowledge that could help the LLM perform in practical conditions regardless of unrealistic assumptions in celebrated benchmarks. We seek to quantify how robust LLM medical question-answering benchmark performance is to violations of unrealistic benchmark assumptions.  Specifically, we present an adversarial method that we call MedFuzz (for medical fuzzing).  MedFuzz attempts to modify benchmark questions in ways aimed at confounding the LLM. We demonstrate the approach by targeting unrealistic assumptions about patient characteristics presented in the MedQA benchmark. Successful \"attacks\" modify a benchmark item in ways that would be unlikely to fool a medical expert but nonetheless \"trick\" the LLM into changing from a correct to an incorrect answer. Further, we present a non-parametric test for calculating the statistic significance of a successful attack. We show how to use calculate \"MedFuzzed\" performance on a medical QA benchmark, as well to find individual cases of statistically significant successful attacks. The methods show promise at providing insights into the ability of an LLM to operate robustly in more realistic settings.",
+        "keywords": "large language model;adversarial machine learning;automatic red teaming",
+        "primary_area": "foundation or frontier models, including LLMs",
+        "supplementary_material": "",
+        "author": "Robert Ness;Katie Matton;Hayden Helm;Sheng Zhang;Junaid Bajwa;Carey Priebe;Eric Horvitz",
+        "authorids": "~Robert_Ness1;~Katie_Matton1;~Hayden_Helm1;~Sheng_Zhang9;~Junaid_Bajwa1;~Carey_Priebe1;~Eric_Horvitz1",
+        "gender": ";;M;M;M;M;M",
+        "homepage": "https://www.microsoft.com/en-us/research/people/robertness/;https://kmatton.github.io/;http://helivan.io;https://sheng-z.github.io/;https://www.microsoft.com/en-us/research/people/jubajwa/;;http://erichorvitz.com",
+        "dblp": ";;;69/6137-12;;;h/EricHorvitz",
+        "google_scholar": ";xNISvkQAAAAJ;zEzJrqsAAAAJ;-LVEXQ8AAAAJ;;clTVC4UAAAAJ;V4OPEAgAAAAJ",
+        "orcid": ";;;;;;",
+        "linkedin": ";;hayden-helm-73b905104/;sheng-z/;;;erichorvitz/",
+        "or_profile": "~Robert_Ness1;~Katie_Matton1;~Hayden_Helm1;~Sheng_Zhang9;~Junaid_Bajwa1;~Carey_Priebe1;~Eric_Horvitz1",
+        "aff": "Microsoft Research;Massachusetts Institute of Technology;Helivan Research;Microsoft;Microsoft;Johns Hopkins University;",
+        "aff_domain": "microsoft.com;mit.edu;helivan.io;microsoft.com;microsoft.com;jhu.edu;",
+        "position": "Researcher;PhD student;Principal Researcher;Researcher;Researcher;Full Professor;",
+        "bibtex": "@misc{\nness2025medfuzz,\ntitle={MedFuzz: Exploring the Robustness of Large Language Models in Medical Question Answering},\nauthor={Robert Ness and Katie Matton and Hayden Helm and Sheng Zhang and Junaid Bajwa and Carey Priebe and Eric Horvitz},\nyear={2025},\nurl={https://openreview.net/forum?id=00ezkB2iZf}\n}",
+        "github": "",
+        "project": "",
+        "reviewers": "EcvC;GdQb;6sJS;Dsnm",
+        "site": "https://openreview.net/forum?id=00ezkB2iZf",
+        "pdf_size": 497465,
+        "rating": "3;3;5;6",
+        "confidence": "4;4;5;3",
+        "soundness": "3;2;3;3",
+        "contribution": "2;2;4;3",
+        "presentation": "3;2;3;3",
+        "wc_summary": "68;148;117;112",
+        "wc_strengths": "71;47;179;133",
+        "wc_weaknesses": "375;270;185;172",
+        "wc_questions": "90;97;181;294",
+        "wc_review": "604;562;662;711",
+        "wc_reply_reviewers": "0;0;49;19",
+        "wc_reply_authors": "736;712;696;720",
+        "reply_reviewers": "0;0;1;1",
+        "reply_authors": "1;1;1;1",
+        "rating_avg": [
+            4.25,
+            1.299038105676658
+        ],
+        "confidence_avg": [
+            4.0,
+            0.7071067811865476
+        ],
+        "soundness_avg": [
+            2.75,
+            0.4330127018922193
+        ],
+        "contribution_avg": [
+            2.75,
+            0.82915619758885
+        ],
+        "presentation_avg": [
+            2.75,
+            0.4330127018922193
+        ],
+        "wc_summary_avg": [
+            111.25,
+            28.525208149985513
+        ],
+        "wc_strengths_avg": [
+            107.5,
+            51.85315805233081
+        ],
+        "wc_weaknesses_avg": [
+            250.5,
+            81.13722943261003
+        ],
+        "wc_questions_avg": [
+            165.5,
+            82.3786987030021
+        ],
+        "wc_review_avg": [
+            634.75,
+            56.55694033449829
+        ],
+        "wc_reply_reviewers_avg": [
+            17.0,
+            20.03746490951388
+        ],
+        "wc_reply_authors_avg": [
+            716.0,
+            14.422205101855956
+        ],
+        "reply_reviewers_avg": [
+            0.5,
+            0.5
+        ],
+        "reply_authors_avg": [
+            1.0,
+            0.0
+        ],
+        "replies_avg": [
+            12,
+            0
+        ],
+        "authors#_avg": [
+            7,
+            0
+        ],
+        "corr_rating_confidence": -0.2721655269759087,
+        "gs_citation": 9,
+        "gs_cited_by_link": "https://scholar.google.com/scholar?cites=4750500882312654321&as_sdt=2005&sciodt=0,5&hl=en",
+        "gs_version_total": 0,
+        "aff_unique_index": "0;1;2;0;0;3",
+        "aff_unique_norm": "Microsoft;Massachusetts Institute of Technology;Helivan Research;Johns Hopkins University",
+        "aff_unique_dep": "Microsoft Research;;;",
+        "aff_unique_url": "https://www.microsoft.com/en-us/research;https://web.mit.edu;;https://www.jhu.edu",
+        "aff_unique_abbr": "MSR;MIT;;JHU",
+        "aff_campus_unique_index": "",
+        "aff_campus_unique": "",
+        "aff_country_unique_index": "0;0;0;0;0",
+        "aff_country_unique": "United States;"
+    },
+    {
+        "id": "01wMplF8TL",
+        "title": "INSTRUCTION-FOLLOWING LLMS FOR TIME SERIES PREDICTION: A TWO-STAGE MULTIMODAL APPROACH",
+        "track": "main",
+        "status": "Reject",
+        "tldr": "",
+        "abstract": "We introduce Text-Informed Time Series Prediction (TITSP), an innovative multimodal framework that integrates textual knowledge with temporal dynamics using Large Language Models (LLMs). TITSP employs a two-stage process that bridges numerical data with rich contextual information for enhanced forecasting accuracy and interpretability.In the first stage, we present AutoPrompter, which captures temporal dependencies from time series data and aligns them with semantically meaningful text embeddings.In the second stage, these aligned embeddings are refined by incorporating task-specific textual instructions through LLM. We evaluate TITSP on several multimodal time series prediction tasks, demonstrating substantial improvements over state-of-the-art baselines. Quantitative results reveal significant gains in predictive performance, while qualitative analyses show that textual context enhances interpretability and actionable insights. Our findings indicate that integrating multimodal inputs not only improves prediction accuracy but also fosters more intuitive, user-centered forecasting",
+        "keywords": "Large Language Models;Time-series Prediction;Multi-modal;Instruction-following",
+        "primary_area": "learning on time series and dynamical systems",
+        "supplementary_material": "/attachment/4e0c464af7a349b9a73543bcd65624333bc923af.zip",
+        "author": "Yu Meng;Malik Tiomoko",
+        "authorids": "~Yu_Meng2;~Malik_Tiomoko1",
+        "gender": "M;M",
+        "homepage": ";",
+        "dblp": ";228/9231",
+        "google_scholar": ";",
+        "orcid": ";",
+        "linkedin": "%E8%90%8C-%E4%BD%99-42460217b/;",
+        "or_profile": "~Yu_Meng2;~Malik_Tiomoko1",
+        "aff": ";Huawei Technologies Ltd.",
+        "aff_domain": ";huawei.com",
+        "position": ";Researcher",
+        "bibtex": "@misc{\nmeng2025instructionfollowing,\ntitle={{INSTRUCTION}-{FOLLOWING} {LLMS} {FOR} {TIME} {SERIES} {PREDICTION}: A {TWO}-{STAGE} {MULTIMODAL} {APPROACH}},\nauthor={Yu Meng and Malik Tiomoko},\nyear={2025},\nurl={https://openreview.net/forum?id=01wMplF8TL}\n}",
+        "github": "",
+        "project": "",
+        "reviewers": "GGqR;We4d;YdJR;mT1k",
+        "site": "https://openreview.net/forum?id=01wMplF8TL",
+        "pdf_size": 2857892,
+        "rating": "3;5;5;5",
+        "confidence": "3;4;3;3",
+        "soundness": "2;2;2;3",
+        "contribution": "2;2;3;3",
+        "presentation": "1;3;3;2",
+        "wc_summary": "73;44;40;78",
+        "wc_strengths": "34;54;77;101",
+        "wc_weaknesses": "225;234;107;152",
+        "wc_questions": "126;102;4;75",
+        "wc_review": "458;434;228;406",
+        "wc_reply_reviewers": "141;180;169;256",
+        "wc_reply_authors": "1461;1062;1162;1232",
+        "reply_reviewers": "1;1;1;1",
+        "reply_authors": "4;3;4;4",
+        "rating_avg": [
+            4.5,
+            0.8660254037844386
+        ],
+        "confidence_avg": [
+            3.25,
+            0.4330127018922193
+        ],
+        "soundness_avg": [
+            2.25,
+            0.4330127018922193
+        ],
+        "contribution_avg": [
+            2.5,
+            0.5
+        ],
+        "presentation_avg": [
+            2.25,
+            0.82915619758885
+        ],
+        "wc_summary_avg": [
+            58.75,
+            16.90229274388537
+        ],
+        "wc_strengths_avg": [
+            66.5,
+            25.064915718988566
+        ],
+        "wc_weaknesses_avg": [
+            179.5,
+            52.566624392289064
+        ],
+        "wc_questions_avg": [
+            76.75,
+            45.71309987301233
+        ],
+        "wc_review_avg": [
+            381.5,
+            90.51381110084803
+        ],
+        "wc_reply_reviewers_avg": [
+            186.5,
+            42.57052971246658
+        ],
+        "wc_reply_authors_avg": [
+            1229.25,
+            146.808335934987
+        ],
+        "reply_reviewers_avg": [
+            1.0,
+            0.0
+        ],
+        "reply_authors_avg": [
+            3.75,
+            0.4330127018922193
+        ],
+        "replies_avg": [
+            26,
+            0
+        ],
+        "authors#_avg": [
+            2,
+            0
+        ],
+        "corr_rating_confidence": 0.3333333333333333,
+        "gs_citation": 0,
+        "gs_cited_by_link": "https://scholar.google.com/scholar?q=related:vR9LZFGUAEUJ:scholar.google.com/&scioq=INSTRUCTION-FOLLOWING+LLMS+FOR+TIME+SERIES+PREDICTION:+A+TWO-STAGE+MULTIMODAL+APPROACH&hl=en&as_sdt=0,33",
+        "gs_version_total": 0,
+        "aff_unique_index": "0",
+        "aff_unique_norm": "Huawei",
+        "aff_unique_dep": "Huawei Technologies",
+        "aff_unique_url": "https://www.huawei.com",
+        "aff_unique_abbr": "Huawei",
+        "aff_country_unique_index": "0",
+        "aff_country_unique": "China"
+    },
+    {
+        "title": "Dynamic Neural Fortresses: An Adaptive Shield for Model Extraction Defense",
+        "status": "Poster",
+        "track": "main",
+        "site": "https://iclr.cc/virtual/2025/poster/31275",
+        "id": "029hDSVoXK",
+        "author_site": "Luan, Zhenyi Wang, Li Shen, Zonghua Gu, Chao Wu, Dacheng Tao",
+        "tldr": "",
+        "abstract": "Model extraction aims to acquire a pre-trained black-box model concealed behind a black-box API. \nExisting defense strategies against model extraction primarily concentrate on preventing the unauthorized extraction of API functionality. However, two significant challenges still need to be solved: (i) Neural network architecture of the API constitutes a form of intellectual property that also requires protection; (ii) The current practice of allocating the same network architecture to both attack and benign queries results in substantial resource wastage. To address these challenges, we propose a novel \\textit{Dynamic Neural Fortresses} (DNF) defense method, employing a dynamic Early-Exit neural network, deviating from the conventional fixed architecture. Firstly, we facilitate the random exit of attack queries from the network at earlier layers. This strategic exit point selection significantly reduces the computational cost for attack queries. Furthermore, the random exit of attack queries from earlier layers introduces increased uncertainty for attackers attempting to discern the exact architecture, thereby enhancing architectural protection. On the contrary, we aim to facilitate benign queries to exit at later layers, preserving model utility, as these layers typically yield meaningful information. \nExtensive experiments on defending against various model extraction scenarios and datasets demonstrate the effectiveness of DNF, achieving a notable 2$\\times$ improvement in efficiency and an impressive reduction of up to 12\\% in clone model accuracy compared to SOTA defense methods. Additionally, DNF provides strong protection against neural architecture theft, effectively safeguarding network architecture from being stolen.",
+        "keywords": "Model Extraction Defense",
+        "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+        "supplementary_material": "",
+        "author": "Siyu Luan;Zhenyi Wang;Li Shen;Zonghua Gu;Chao Wu;Dacheng Tao",
+        "authorids": "~Siyu_Luan1;~Zhenyi_Wang1;~Li_Shen1;~Zonghua_Gu1;~Chao_Wu7;~Dacheng_Tao1",
+        "gender": ";;M;M;F;",
+        "homepage": ";;https://sites.google.com/site/mathshenli/home;https://dblp.org/pid/93/1025.html;;",
+        "dblp": ";;91/3680-8;93/1025.html;;",
+        "google_scholar": ";;yVhgENIAAAAJ;;izrgKEEAAAAJ;",
+        "orcid": ";;;;0009-0003-7508-2012;",
+        "linkedin": ";;;;chao-wu-691a24136/;",
+        "or_profile": "~Siyu_Luan1;~Zhenyi_Wang1;~Li_Shen1;~Zonghua_Gu1;~Chao_Wu7;~Dacheng_Tao1",
+        "aff": ";;Sun Yat-Sen University;Hofstra University;State University of New York at Buffalo;",
+        "aff_domain": ";;mail.sysu.edu.cn;hofstra.edu;buffalo.edu;",
+        "position": ";;Associate Professor;Associate Professor;PhD student;",
+        "bibtex": "@inproceedings{\nluan2025dynamic,\ntitle={Dynamic Neural Fortresses: An Adaptive Shield for Model Extraction Defense},\nauthor={Siyu Luan and Zhenyi Wang and Li Shen and Zonghua Gu and Chao Wu and Dacheng Tao},\nbooktitle={The Thirteenth International Conference on Learning Representations},\nyear={2025},\nurl={https://openreview.net/forum?id=029hDSVoXK}\n}",
+        "github": "",
+        "project": "",
+        "reviewers": "FTna;zh4c;xham;CXR5;dSR3",
+        "pdf_size": 1734221,
+        "rating": "6;6;6;8;8",
+        "confidence": "3;3;3;4;5",
+        "soundness": "3;3;3;2;2",
+        "contribution": "3;2;3;4;2",
+        "presentation": "2;2;3;3;2",
+        "wc_summary": "163;61;77;109;202",
+        "wc_strengths": "167;56;36;64;98",
+        "wc_weaknesses": "286;469;188;259;700",
+        "wc_questions": "120;101;29;64;203",
+        "wc_review": "736;687;330;496;1203",
+        "wc_reply_reviewers": "0;0;0;0;0",
+        "wc_reply_authors": "0;0;0;0;0",
+        "reply_reviewers": "0;0;0;0;0",
+        "reply_authors": "0;0;0;0;0",
+        "rating_avg": [
+            6.8,
+            0.9797958971132712
+        ],
+        "confidence_avg": [
+            3.6,
+            0.8
+        ],
+        "soundness_avg": [
+            2.6,
+            0.4898979485566356
+        ],
+        "contribution_avg": [
+            2.8,
+            0.7483314773547882
+        ],
+        "presentation_avg": [
+            2.4,
+            0.4898979485566356
+        ],
+        "wc_summary_avg": [
+            122.4,
+            52.905954296279354
+        ],
+        "wc_strengths_avg": [
+            84.2,
+            45.98434516223973
+        ],
+        "wc_weaknesses_avg": [
+            380.4,
+            184.7491271968558
+        ],
+        "wc_questions_avg": [
+            103.4,
+            58.803401262171896
+        ],
+        "wc_review_avg": [
+            690.4,
+            294.118751527338
+        ],
+        "wc_reply_reviewers_avg": [
+            0,
+            0
+        ],
+        "wc_reply_authors_avg": [
+            0,
+            0
+        ],
+        "reply_reviewers_avg": [
+            0,
+            0
+        ],
+        "reply_authors_avg": [
+            0,
+            0
+        ],
+        "replies_avg": [
+            7,
+            0
+        ],
+        "authors#_avg": [
+            6,
+            0
+        ],
+        "corr_rating_confidence": 0.9185586535436918,
+        "gs_citation": 0,
+        "gs_cited_by_link": "https://scholar.google.com/scholar?q=related:EggwCrO3lykJ:scholar.google.com/&scioq=Dynamic+Neural+Fortresses:+An+Adaptive+Shield+for+Model+Extraction+Defense&hl=en&as_sdt=0,33",
+        "gs_version_total": 0,
+        "openreview": "https://openreview.net/forum?id=029hDSVoXK",
+        "pdf": "https://openreview.net/pdf?id=029hDSVoXK",
+        "email": ";;mail.sysu.edu.cn;hofstra.edu;buffalo.edu;",
+        "author_num": 6,
+        "aff_unique_index": "0;1;2",
+        "aff_unique_norm": "Sun Yat-sen University;Hofstra University;State University of New York at Buffalo",
+        "aff_unique_dep": ";;",
+        "aff_unique_url": "http://www.sysu.edu.cn/;https://www.hofstra.edu;https://www.buffalo.edu",
+        "aff_unique_abbr": "SYSU;Hofstra;SUNY Buffalo",
+        "aff_campus_unique_index": "1",
+        "aff_campus_unique": ";Buffalo",
+        "aff_country_unique_index": "0;1;1",
+        "aff_country_unique": "China;United States"
+    },
+    {
+        "id": "02DCEU6vSU",
+        "title": "Gen-LRA: Towards a Principled Membership Inference Attack for Generative Models",
+        "track": "main",
+        "status": "Withdraw",
+        "tldr": "",
+        "abstract": "Evaluating the potential privacy leakage of synthetic data is an important but unresolved problem. Most existing adversarial auditing frameworks for synthetic data rely on heuristics and unreasonable assumptions to attack the failure modes of generative models, exhibiting limited capability to describe and detect the privacy exposure of training data. In this paper, we study designing Membership Inference Attacks (MIAs) that specifically exploit the observation that generative models tend to memorize certain data points in their training sets, leading to significant local overfitting. Here, we propose Generative Likelihood Ratio Attack (Gen-LRA), a novel, computationally efficient shadow-box MIA that, with no assumption of model knowledge or access, attacks the generated synthetic dataset by conducting a hypothesis test that it is locally overfit to potential training data. Assessed over a comprehensive benchmark spanning diverse datasets, model architectures, and attack parameters, we find that Gen-LRA consistently dominates other MIAs for generative models across multiple performance metrics. These results underscore Gen-LRA's effectiveness as an interpretable and robust privacy auditing tool, highlighting the significant privacy risks posed by generative model overfitting in real-world applications",
+        "keywords": "Privacy;Membership Inference Attacks;Generative Models",
+        "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+        "supplementary_material": "/attachment/50c96fb68049a4bec3f129b7c7f85b812793218e.pdf",
+        "author": "Joshua Ward;Chi-Hua Wang;Guang Cheng",
+        "authorids": "~Joshua_Ward1;~Chi-Hua_Wang1;~Guang_Cheng1",
+        "gender": "M;M;M",
+        "homepage": ";https://sites.google.com/view/chihuawang/home;http://www.stat.ucla.edu/~guangcheng/",
+        "dblp": "372/7149;;99/4812",
+        "google_scholar": ";0GTaQeMAAAAJ;",
+        "orcid": ";;",
+        "linkedin": "josh-ward-354b75135/;;",
+        "or_profile": "~Joshua_Ward1;~Chi-Hua_Wang1;~Guang_Cheng1",
+        "aff": "University of California, Los Angeles;University of California, Los Angeles;University of California, Los Angeles",
+        "aff_domain": "ucla.edu;ucla.edu;ucla.edu",
+        "position": "PhD student;Postdoc;Full Professor",
+        "bibtex": "@misc{\nward2024genlra,\ntitle={Gen-{LRA}: Towards a Principled Membership Inference Attack for Generative Models},\nauthor={Joshua Ward and Chi-Hua Wang and Guang Cheng},\nyear={2024},\nurl={https://openreview.net/forum?id=02DCEU6vSU}\n}",
+        "github": "",
+        "project": "",
+        "reviewers": "6TYk;cCQH;Phn8;Yeu8;tZB4",
+        "site": "https://openreview.net/forum?id=02DCEU6vSU",
+        "pdf_size": 695849,
+        "rating": "3;3;5;5;8",
+        "confidence": "4;4;4;3;4",
+        "soundness": "2;2;2;3;3",
+        "contribution": "2;2;3;2;3",
+        "presentation": "3;3;3;3;3",
+        "wc_summary": "90;112;59;95;112",
+        "wc_strengths": "76;112;95;29;54",
+        "wc_weaknesses": "200;192;399;32;39",
+        "wc_questions": "227;111;3;635;80",
+        "wc_review": "593;527;556;791;285",
+        "wc_reply_reviewers": "0;0;0;0;0",
+        "wc_reply_authors": "0;0;0;0;0",
+        "reply_reviewers": "0;0;0;0;0",
+        "reply_authors": "0;0;0;0;0",
+        "rating_avg": [
+            4.8,
+            1.8330302779823362
+        ],
+        "confidence_avg": [
+            3.8,
+            0.39999999999999997
+        ],
+        "soundness_avg": [
+            2.4,
+            0.4898979485566356
+        ],
+        "contribution_avg": [
+            2.4,
+            0.4898979485566356
+        ],
+        "presentation_avg": [
+            3.0,
+            0.0
+        ],
+        "wc_summary_avg": [
+            93.6,
+            19.4381069037085
+        ],
+        "wc_strengths_avg": [
+            73.2,
+            29.362561196189954
+        ],
+        "wc_weaknesses_avg": [
+            172.4,
+            134.16497307419698
+        ],
+        "wc_questions_avg": [
+            211.2,
+            223.81099168718234
+        ],
+        "wc_review_avg": [
+            550.4,
+            161.6905686798089
+        ],
+        "wc_reply_reviewers_avg": [
+            0,
+            0
+        ],
+        "wc_reply_authors_avg": [
+            0,
+            0
+        ],
+        "reply_reviewers_avg": [
+            0,
+            0
+        ],
+        "reply_authors_avg": [
+            0,
+            0
+        ],
+        "replies_avg": [
+            6,
+            0
+        ],
+        "authors#_avg": [
+            3,
+            0
+        ],
+        "corr_rating_confidence": -0.05455447255899811,
+        "gs_citation": 0,
+        "gs_cited_by_link": "https://scholar.google.com/scholar?q=related:dWWJeCMpOKsJ:scholar.google.com/&scioq=Gen-LRA:+Towards+a+Principled+Membership+Inference+Attack+for+Generative+Models&hl=en&as_sdt=0,33",
+        "gs_version_total": 0,
+        "aff_unique_index": "0;0;0",
+        "aff_unique_norm": "University of California, Los Angeles",
+        "aff_unique_dep": "",
+        "aff_unique_url": "https://www.ucla.edu",
+        "aff_unique_abbr": "UCLA",
+        "aff_campus_unique_index": "0;0;0",
+        "aff_campus_unique": "Los Angeles",
+        "aff_country_unique_index": "0;0;0",
+        "aff_country_unique": "United States"
+    }
+]

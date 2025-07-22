@@ -1,9 +1,12 @@
 import os
 import yaml
+import logging
 from pathlib import Path
 from volcenginesdkarkruntime import Ark
 from typing import List, Dict, Any, Optional
 
+# 获取模块级别的logger
+logger = logging.getLogger(__name__)
 
 class DoubaoAPI:
     """豆包API封装类，隐藏内部Ark实现细节"""
@@ -43,8 +46,8 @@ class DoubaoAPI:
         config_path = Path(__file__).parent / "config.yaml"
         
         if not config_path.exists():
-            print(f"警告：配置文件 {config_path} 不存在。")
-            print("请复制 config_template.yaml 为 config.yaml 并填写您的API密钥。")
+            logger.warning(f"配置文件 {config_path} 不存在。")
+            logger.warning("请复制 config_template.yaml 为 config.yaml 并填写您的API密钥。")
             return {}
         
         try:
@@ -52,7 +55,7 @@ class DoubaoAPI:
                 config = yaml.safe_load(f)
                 return config.get('doubao', {}) if config else {}
         except Exception as e:
-            print(f"警告：读取配置文件失败: {e}")
+            logger.warning(f"读取配置文件失败: {e}")
             return {}
     
     def chat(self, messages: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -99,54 +102,26 @@ def call_doubao(messages: List[Dict[str, Any]]) -> Dict[str, Any]:
     对外提供的豆包API调用接口
     
     Args:
-        messages: 消息列表，格式示例：
-            [
-                {
-                    "role": "user", 
-                    "content": "你好"
-                }
-            ]
-            或包含图片的消息：
-            [
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": "图片URL"
-                            }
-                        },
-                        {"type": "text", "text": "这是哪里？"}
-                    ]
-                }
-            ]
-    
+        messages: 消息列表
+        
     Returns:
-        Dict: 包含响应结果的字典
-            {
-                "success": bool,
-                "content": str,  # AI回复内容
-                "model": str,   # 使用的模型名称
-                "usage": dict,  # token使用情况
-                "error": str    # 错误信息（仅在success为False时存在）
-            }
+        响应结果字典
     """
     return _doubao_instance.chat(messages)
 
 
-# 示例用法（可以删除或注释掉）
 if __name__ == "__main__":
-    # 文本对话示例
-    text_messages = [
-        {
-            "role": "user",
-            "content": "你好，请介绍一下你自己"
-        }
+    # 测试代码
+    messages = [
+        {"role": "user", "content": "你好，请介绍一下你自己"}
     ]
     
-    # 图片对话示例
-    image_messages = [
+    result = call_doubao(messages)
+    logger.info("文本对话结果:")
+    logger.info(result)
+    
+    # 测试图片对话
+    messages2 = [
         {
             "role": "user",
             "content": [
@@ -161,12 +136,7 @@ if __name__ == "__main__":
         }
     ]
     
-    # 调用API
-    result = call_doubao(text_messages)
-    print("文本对话结果:")
-    print(result)
-    
-    result2 = call_doubao(image_messages)
-    print("\n图片对话结果:")
-    print(result2)
+    result2 = call_doubao(messages2)
+    logger.info("\n图片对话结果:")
+    logger.info(result2)
 

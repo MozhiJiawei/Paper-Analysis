@@ -2,8 +2,12 @@ import arxiv
 import os
 import ssl
 import urllib.request
+import logging
 from typing import List, Dict
 from pathlib import Path
+
+# 获取模块级别的logger
+logger = logging.getLogger(__name__)
 
 # 全局变量跟踪SSL是否已配置
 _ssl_configured = False
@@ -32,10 +36,10 @@ def _configure_ssl_for_arxiv():
         urllib.request.install_opener(opener)
         
         _ssl_configured = True  # 标记为已配置
-        print("已配置SSL设置以处理证书验证问题")
+        logger.info("已配置SSL设置以处理证书验证问题")
         return True
     except Exception as e:
-        print(f"SSL配置失败: {e}")
+        logger.error(f"SSL配置失败: {e}")
         return False
 
 
@@ -63,7 +67,7 @@ def download_pdfs_from_arxiv(paper_name_list: List[str],
     os.makedirs(save_dir, exist_ok=True)
     
     for paper_name in paper_name_list:
-        print(f"正在处理论文: {paper_name}")
+        logger.info(f"正在处理论文: {paper_name}")
         result = download_single_pdf_from_arxiv(paper_name, save_dir)
         results.update(result)
     
@@ -115,7 +119,7 @@ def download_single_pdf_from_arxiv(paper_name: str,
             
             # 如果精确搜索失败，尝试更宽松的关键词搜索
             if not papers:
-                print(f"精确标题搜索失败，尝试关键词搜索...")
+                logger.info(f"精确标题搜索失败，尝试关键词搜索...")
                 # 提取关键词进行搜索
                 search = arxiv.Search(
                     query=keywords,
@@ -126,7 +130,7 @@ def download_single_pdf_from_arxiv(paper_name: str,
                 papers = list(client.results(search))
         
         if not papers:
-            print(f"未找到论文: {paper_name}")
+            logger.warning(f"未找到论文: {paper_name}")
             return {paper_name: 1}
         
         # 取第一个最相关的结果
@@ -148,17 +152,17 @@ def download_single_pdf_from_arxiv(paper_name: str,
             filepath = os.path.join(save_dir, filename)
             counter += 1
         
-        print(f"正在下载: {paper.title}")
-        print(f"作者: {', '.join([author.name for author in paper.authors])}")
-        print(f"发布日期: {paper.published}")
-        print(f"保存路径: {filepath}")
+        logger.info(f"正在下载: {paper.title}")
+        logger.info(f"作者: {', '.join([author.name for author in paper.authors])}")
+        logger.info(f"发布日期: {paper.published}")
+        logger.info(f"保存路径: {filepath}")
         
         # 下载PDF
         paper.download_pdf(dirpath=save_dir, filename=filename)
         
-        print(f"下载成功: {filename}")
+        logger.info(f"下载成功: {filename}")
         return {paper_name: 0}
         
     except Exception as e:
-        print(f"下载论文 '{paper_name}' 时发生错误: {str(e)}")
+        logger.error(f"下载论文 '{paper_name}' 时发生错误: {str(e)}")
         return {paper_name: 2}

@@ -13,9 +13,12 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
+# 获取模块级别的logger
+logger = logging.getLogger(__name__)
+
 def example_1_download_single_pdf():
     """示例1：下载单个PDF文件"""
-    print("=== 示例1：下载单个PDF文件 ===")
+    logger.info("=== 示例1：下载单个PDF文件 ===")
     
     # 使用便捷函数下载单个PDF
     url = "https://example.com/sample.pdf"
@@ -27,13 +30,13 @@ def example_1_download_single_pdf():
         timeout=30
     )
     
-    print(f"下载结果: {'成功' if success else '失败'}")
-    print()
+    logger.info(f"下载结果: {'成功' if success else '失败'}")
+    logger.info("")
 
 
 def example_2_download_pdf_list_simple():
     """示例2：从简单URL列表下载PDF"""
-    print("=== 示例2：从简单URL列表下载PDF ===")
+    logger.info("=== 示例2：从简单URL列表下载PDF ===")
     
     # PDF URL列表
     pdf_urls = [
@@ -51,13 +54,13 @@ def example_2_download_pdf_list_simple():
         timeout=30
     )
     
-    print(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
-    print()
+    logger.info(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
+    logger.info("")
 
 
 def example_3_download_pdf_list_with_titles():
     """示例3：从包含标题的PDF信息列表下载"""
-    print("=== 示例3：从包含标题的PDF信息列表下载 ===")
+    logger.info("=== 示例3：从包含标题的PDF信息列表下载 ===")
     
     # 包含标题的PDF信息列表
     pdf_info_list = [
@@ -84,13 +87,13 @@ def example_3_download_pdf_list_with_titles():
         timeout=30
     )
     
-    print(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
-    print()
+    logger.info(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
+    logger.info("")
 
 
 def example_4_use_downloader_class():
     """示例4：使用PDFDownloader类进行更精细的控制"""
-    print("=== 示例4：使用PDFDownloader类 ===")
+    logger.info("=== 示例4：使用PDFDownloader类 ===")
     
     # 创建下载器实例
     downloader = PDFDownloader(
@@ -116,22 +119,22 @@ def example_4_use_downloader_class():
     
     # 下载PDF文件
     results = downloader.download_pdfs_from_list(pdf_info_list)
-    print(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
+    logger.info(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
     
     # 获取下载统计信息
     stats = downloader.get_download_stats()
-    print(f"统计信息:")
-    print(f"  - 文件数量: {stats['count']}")
-    print(f"  - 总大小: {stats['total_size_mb']:.2f} MB")
-    print(f"  - 文件列表:")
+    logger.info(f"统计信息:")
+    logger.info(f"  - 文件数量: {stats['count']}")
+    logger.info(f"  - 总大小: {stats['total_size_mb']:.2f} MB")
+    logger.info(f"  - 文件列表:")
     for file_info in stats['files'][:5]:  # 只显示前5个
-        print(f"    * {file_info['name']} ({file_info['size_mb']:.2f} MB)")
-    print()
+        logger.info(f"    * {file_info['name']} ({file_info['size_mb']:.2f} MB)")
+    logger.info("")
 
 
 def example_5_integrate_with_existing_code():
     """示例5：集成到现有代码中（模拟从download_papers.py获取的数据）"""
-    print("=== 示例5：集成到现有代码中 ===")
+    logger.info("=== 示例5：集成到现有代码中 ===")
     
     # 模拟从原有代码中获取的pdf_info_list数据
     # 这通常来自extract_pdf_links_with_titles函数
@@ -160,46 +163,46 @@ def example_5_integrate_with_existing_code():
     
     results = downloader.download_pdfs_from_list(simulated_pdf_info_list)
     
-    print(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
+    logger.info(f"下载结果: 成功 {results['success']} 个，失败 {results['failed']} 个")
     
     # 获取统计信息（替换原有的check_download_results函数）
     stats = downloader.get_download_stats()
-    print(f"最终统计: {stats['count']} 个文件，总大小 {stats['total_size_mb']:.2f} MB")
-    print()
+    logger.info(f"最终统计: {stats['count']} 个文件，总大小 {stats['total_size_mb']:.2f} MB")
+    logger.info("")
 
 
 def example_6_download_single_arxiv_paper():
     """示例6：下载单篇arXiv论文"""
-    print("=== 示例6：下载单篇arXiv论文 ===")
-    print("注意：如果遇到SSL证书验证错误，程序会自动配置SSL设置来解决")
-    print()
+    logger.info("=== 示例6：下载单篇arXiv论文 ===")
+    logger.info("注意：如果遇到SSL证书验证错误，程序会自动配置SSL设置来解决")
+    logger.info("")
     
     # 方式1：使用论文标题搜索
-    print("方式1：使用论文标题搜索")
+    logger.info("方式1：使用论文标题搜索")
     result1 = download_single_pdf_from_arxiv(
         paper_name="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
         save_dir="arxiv_downloads"
     )
     status1 = "成功" if list(result1.values())[0] == 0 else "失败"
-    print(f"按标题搜索结果: {status1} - {result1}")
-    print()
+    logger.info(f"按标题搜索结果: {status1} - {result1}")
+    logger.info("")
     
     # 方式2：使用arXiv ID
-    print("方式2：使用arXiv ID")
+    logger.info("方式2：使用arXiv ID")
     result2 = download_single_pdf_from_arxiv(
         paper_name="1706.03762",  # Transformer论文的arXiv ID
         save_dir="arxiv_downloads"
     )
     status2 = "成功" if list(result2.values())[0] == 0 else "失败"
-    print(f"按ID搜索结果: {status2} - {result2}")
-    print()
+    logger.info(f"按ID搜索结果: {status2} - {result2}")
+    logger.info("")
 
 
 def example_7_download_multiple_arxiv_papers():
     """示例7：批量下载多篇arXiv论文"""
-    print("=== 示例7：批量下载多篇arXiv论文 ===")
-    print("注意：SSL配置只会在第一次调用时执行")
-    print()
+    logger.info("=== 示例7：批量下载多篇arXiv论文 ===")
+    logger.info("注意：SSL配置只会在第一次调用时执行")
+    logger.info("")
     
     # 论文列表（混合使用标题和ID）
     paper_list = [
@@ -219,27 +222,27 @@ def example_7_download_multiple_arxiv_papers():
         save_dir="arxiv_batch_downloads"
     )
     
-    print("下载结果:")
+    logger.info("下载结果:")
     for paper_name, status in results.items():
         status_text = {
             0: "成功",
             1: "搜索失败",
             2: "下载失败"
         }.get(status, "未知状态")
-        print(f"  - {paper_name}: {status_text}")
+        logger.info(f"  - {paper_name}: {status_text}")
     
     # 统计结果
     success_count = sum(1 for status in results.values() if status == 0)
     total_count = len(results)
-    print(f"\n总计: {success_count}/{total_count} 下载成功")
-    print()
+    logger.info(f"\n总计: {success_count}/{total_count} 下载成功")
+    logger.info("")
 
 
 
 def main():
     """运行所有示例"""
-    print("PDF下载器使用示例")
-    print("=" * 50)
+    logger.info("PDF下载器使用示例")
+    logger.info("=" * 50)
     
     # 注意：以下示例使用的都是示例URL，实际运行时会失败
     # 在实际使用时，请替换为真实的PDF URL
@@ -252,8 +255,8 @@ def main():
     # example_6_download_single_arxiv_paper()
     example_7_download_multiple_arxiv_papers()
 
-    print("所有示例执行完成！")
-    print("\n注意：示例中使用的是虚拟URL，实际使用时请替换为真实的PDF链接。")
+    logger.info("所有示例执行完成！")
+    logger.info("\n注意：示例中使用的是虚拟URL，实际使用时请替换为真实的PDF链接。")
 
 
 if __name__ == "__main__":
