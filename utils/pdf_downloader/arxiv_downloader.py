@@ -146,11 +146,8 @@ def download_single_pdf_from_arxiv(paper_name: str,
         
         # 如果文件已存在，添加编号
         counter = 1
-        while os.path.exists(filepath):
-            base_name = safe_title
-            filename = f"{base_name}_{counter}.pdf"
-            filepath = os.path.join(save_dir, filename)
-            counter += 1
+        if (os.path.exists(filepath)):
+            return {paper_name: 0}
         
         logger.info(f"正在下载: {paper.title}")
         logger.info(f"作者: {', '.join([author.name for author in paper.authors])}")

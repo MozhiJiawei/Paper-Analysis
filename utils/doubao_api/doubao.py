@@ -33,6 +33,7 @@ class DoubaoAPI:
         # 初始化内部客户端
         self._client = Ark(
             base_url=self.base_url,
+            timeout=1800,
             api_key=self.api_key,
         )
     
@@ -71,14 +72,21 @@ class DoubaoAPI:
         try:
             response = self._client.chat.completions.create(
                 model=self.model,
-                messages=messages
+                messages=messages,
+                stream=True
             )
-            
+
+            rsp_content = ""
+            with response:  # 确保在代码块执行完毕后自动关闭连接，避免链接泄露
+                for chunk in response:
+                    if chunk.choices[0].delta.content is not None:
+                        rsp_content += chunk.choices[0].delta.content
+                        print(chunk.choices[0].delta.content, end="")
+
             # 提取并返回有用的信息，隐藏内部实现细节
             return {
                 "success": True,
-                "content": response.choices[0].message.content,
-                "model": response.model,
+                "content": rsp_content,
                 "usage": {
                     "prompt_tokens": response.usage.prompt_tokens,
                     "completion_tokens": response.usage.completion_tokens,

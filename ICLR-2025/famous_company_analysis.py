@@ -58,7 +58,7 @@ class ICLR2025FamousCompanyAnalyzer:
         print(f"总共读取到 {len(papers)} 篇论文")
         
         # 筛选poster论文
-        poster_papers = [paper for paper in papers if paper.get('status', '').lower() == 'poster']
+        poster_papers = [paper for paper in papers if paper.get('status', '').lower() == 'poster' or paper.get('status', '').lower() == 'spotlight' or paper.get('status', '').lower() == 'oral']
         print(f"找到 {len(poster_papers)} 篇poster论文")
         
         # 筛选知名公司相关的poster论文

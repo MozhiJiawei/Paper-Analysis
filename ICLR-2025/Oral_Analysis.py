@@ -20,7 +20,7 @@ def extract_oral_papers(json_file_path):
         # 过滤出Status为Oral的论文
         oral_papers = []
         for paper in papers:
-            if paper.get('status', '').lower() == 'poster':
+            if paper.get('status', '').lower() == 'oral':
                 oral_papers.append(paper)
         
         return oral_papers
@@ -60,7 +60,7 @@ def print_oral_papers_summary(oral_papers, num_to_print=10):
 
 if __name__ == "__main__":
     # JSON文件路径
-    json_file_path = "iclr2025_famous_poster.json"
+    json_file_path = "iclr2025.json"
     
     # 提取Oral论文
     print("开始解析ICLR 2025论文数据...")
@@ -75,7 +75,7 @@ if __name__ == "__main__":
         print(f"\n所有Oral论文已保存到oral_papers_list变量中，共 {len(oral_papers_list)} 篇")
         
         # 创建Oral_Result目录
-        output_dir = "Famous_Result"
+        output_dir = "Oral_Result"
         os.makedirs(output_dir, exist_ok=True)
         
         # 调用ai_acceleration_parse_paper_copilot方法分析所有Oral论文
