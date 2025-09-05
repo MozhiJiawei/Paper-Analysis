@@ -40,6 +40,138 @@ function Invoke-PythonScript {
     Write-Host "$TaskName 执行完成" -ForegroundColor Green
 }
 
+# 更新README文件的函数
+function Update-ReadmeWithReport {
+    param(
+        [string]$ParseDir,
+        [string]$ReadmePath
+    )
+    
+    Write-Host "更新README文件..." -ForegroundColor Yellow
+    
+    try {
+        # 解析日期信息
+        $dateParts = $ParseDir -split '[\\/]'
+        if ($dateParts.Length -ne 2) {
+            throw "日期格式不正确，期望格式: YYYY-MM/MM-DD，实际: $ParseDir"
+        }
+        
+        $yearMonth = $dateParts[0]  # 例如: 2025-09
+        $dayPart = $dateParts[1]   # 例如: 09-01
+        
+        # 构建显示日期 (YYYY-MM-DD格式)
+        $displayDate = "$yearMonth-$dayPart"
+        
+        # 查找对应的报告文件
+        $targetDir = Join-Path $ScriptDir $ParseDir
+        $reportFiles = Get-ChildItem -Path $targetDir -Filter "ai_inference_report_*.md" -File
+        
+        if ($reportFiles.Count -eq 0) {
+            Write-Host "警告: 未找到报告文件，跳过README更新" -ForegroundColor Yellow
+            return
+        }
+        
+        # 使用最新的报告文件
+        $latestReport = $reportFiles | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        $reportRelativePath = "$ParseDir/$($latestReport.Name)"
+        
+        # 读取现有README内容
+        if (-not (Test-Path $ReadmePath)) {
+            throw "README文件不存在: $ReadmePath"
+        }
+        
+        $readmeContent = Get-Content $ReadmePath -Encoding UTF8
+        $yearMonthClean = $yearMonth -replace '-', '_'
+        $startMarker = "<!-- REPORTS_START_$yearMonthClean -->"
+        $endMarker = "<!-- REPORTS_END_$yearMonthClean -->"
+        
+        # 查找标记位置
+        $startIndex = -1
+        $endIndex = -1
+        
+        for ($i = 0; $i -lt $readmeContent.Length; $i++) {
+            if ($readmeContent[$i] -eq $startMarker) {
+                $startIndex = $i
+            }
+            if ($readmeContent[$i] -eq $endMarker) {
+                $endIndex = $i
+                break
+            }
+        }
+        
+        if ($startIndex -eq -1 -or $endIndex -eq -1) {
+            Write-Host "警告: 未找到对应年月的标记区域 ($startMarker, $endMarker)，跳过README更新" -ForegroundColor Yellow
+            return
+        }
+        
+        # 提取现有报告列表
+        $existingReports = @()
+        for ($i = $startIndex + 1; $i -lt $endIndex; $i++) {
+            $line = $readmeContent[$i].Trim()
+            if ($line -match '^\s*-\s*\[(.+?)\]') {
+                $existingReports += $matches[1]
+            }
+        }
+        
+        # 检查是否已存在该日期的报告
+        if ($existingReports -contains $displayDate) {
+            Write-Host "报告 $displayDate 已存在于README中，更新路径..." -ForegroundColor Cyan
+            
+            # 更新现有条目
+            $newContent = @()
+            $newContent += $readmeContent[0..$startIndex]
+            
+            for ($i = $startIndex + 1; $i -lt $endIndex; $i++) {
+                $line = $readmeContent[$i]
+                if ($line -match '^\s*-\s*\[' + [regex]::Escape($displayDate) + '\]') {
+                    $newContent += "- [$displayDate]($reportRelativePath)"
+                } else {
+                    $newContent += $line
+                }
+            }
+            
+            $newContent += $readmeContent[$endIndex..($readmeContent.Length - 1)]
+            
+        } else {
+            Write-Host "添加新报告 $displayDate 到README..." -ForegroundColor Cyan
+            
+            # 添加新条目（按日期倒序）
+            $allReports = @()
+            $allReports += @{Date=$displayDate; Path=$reportRelativePath}
+            
+            # 添加现有报告
+            for ($i = $startIndex + 1; $i -lt $endIndex; $i++) {
+                $line = $readmeContent[$i].Trim()
+                if ($line -match '^\s*-\s*\[(.+?)\]\((.+?)\)') {
+                    $allReports += @{Date=$matches[1]; Path=$matches[2]}
+                }
+            }
+            
+            # 按日期排序（倒序）
+            $sortedReports = $allReports | Sort-Object Date -Descending
+            
+            # 构建新内容
+            $newContent = @()
+            $newContent += $readmeContent[0..$startIndex]
+            
+            foreach ($report in $sortedReports) {
+                $newContent += "- [$($report.Date)]($($report.Path))"
+            }
+            
+            $newContent += ""  # 空行
+            $newContent += $readmeContent[$endIndex..($readmeContent.Length - 1)]
+        }
+        
+        # 写入更新后的内容
+        $newContent | Set-Content $ReadmePath -Encoding UTF8
+        Write-Host "README更新完成" -ForegroundColor Green
+        
+    } catch {
+        Write-Host "README更新失败: $_" -ForegroundColor Red
+        throw
+    }
+}
+
 try {
     Write-Host "开始ArXiv论文分析流程 - $ParseDir" -ForegroundColor Green
     
@@ -52,14 +184,18 @@ try {
     }
     
     # 2. 执行parser.py
-#     $parserScript = Join-Path $ScriptDir "parser.py"
-#     Invoke-PythonScript -ScriptPath $parserScript -Arguments @("`"$ParseDir`"") -TaskName "AI加速论文解析"
+    $parserScript = Join-Path $ScriptDir "parser.py"
+    Invoke-PythonScript -ScriptPath $parserScript -Arguments @("`"$ParseDir`"") -TaskName "AI加速论文解析"
 
     # 4. 执行deep_analysis.py生成简报
-    # $deepAnalysisScript = Join-Path $ScriptDir "deep_analysis.py"
-    # Invoke-PythonScript -ScriptPath $deepAnalysisScript -Arguments @("`"$ParseDir`"") -TaskName "技术简报生成"
+    $deepAnalysisScript = Join-Path $ScriptDir "deep_analysis.py"
+    Invoke-PythonScript -ScriptPath $deepAnalysisScript -Arguments @("`"$ParseDir`"") -TaskName "技术简报生成"
     
-    # 5. 提交到Git
+    # 5. 更新README文件
+    $readmePath = Join-Path $ScriptDir "README.md"
+    Update-ReadmeWithReport -ParseDir $ParseDir -ReadmePath $readmePath
+    
+    # 6. 提交到Git
     Write-Host "提交到Git..." -ForegroundColor Yellow
     $relativePath = $ParseDir -replace '\\', '/'
     
@@ -90,6 +226,18 @@ try {
         }
     } else {
         Write-Host "警告: 未找到技术简报文件 (ai_inference_report_*.md)" -ForegroundColor Yellow
+    }
+    
+    # 添加更新后的README文件
+    if (Test-Path $readmePath) {
+        git add $readmePath 2>&1 | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "已添加README文件到Git" -ForegroundColor Cyan
+        } else {
+            Write-Host "警告: 添加README文件失败" -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "警告: 未找到README文件: $readmePath" -ForegroundColor Yellow
     }
     
     # 检查是否有文件需要提交

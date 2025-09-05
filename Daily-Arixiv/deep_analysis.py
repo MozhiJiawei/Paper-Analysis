@@ -27,11 +27,11 @@ from typing import List, Dict, Tuple
 # 添加utils路径到sys.path以导入模块
 current_dir = Path(__file__).parent
 utils_dir = current_dir.parent / "utils"
-sys.path.insert(0, str(utils_dir))
+sys.path.insert(0, str(current_dir.parent))
 
-from pdf_downloader.arxiv_downloader import download_pdfs_from_arxiv
-from pdf_extractor.pdf_extractor import extract_paper_abstract, abstract_parser
-from doubao_api.doubao import call_doubao
+from utils.pdf_downloader.arxiv_downloader import download_pdfs_from_arxiv
+from utils.pdf_extractor.pdf_extractor import extract_paper_abstract, abstract_parser
+from utils.doubao_api.doubao import call_doubao
 
 def setup_logging(debug: bool = False) -> logging.Logger:
     """设置日志配置"""
@@ -167,6 +167,38 @@ def filter_papers_for_download(related_papers: List[str], download_dir: str, log
     
     return papers_to_download, papers_already_exist
 
+def find_csv_file(parse_result_dir: str) -> str:
+    """
+    在指定目录中查找ai_inference_related_papers.csv文件
+    
+    Args:
+        parse_result_dir: 解析结果目录路径
+        
+    Returns:
+        str: CSV文件的完整路径
+        
+    Raises:
+        FileNotFoundError: 如果找不到CSV文件
+    """
+    # 首先检查根目录
+    csv_path = os.path.join(parse_result_dir, "ai_inference_related_papers.csv")
+    if os.path.exists(csv_path):
+        return csv_path
+    
+    # 如果根目录没有，则在子目录中查找
+    if os.path.exists(parse_result_dir):
+        for item in os.listdir(parse_result_dir):
+            item_path = os.path.join(parse_result_dir, item)
+            if os.path.isdir(item_path):
+                # 检查是否是ai_acceleration_analysis_开头的目录
+                if item.startswith('ai_acceleration_analysis_'):
+                    sub_csv_path = os.path.join(item_path, "ai_inference_related_papers.csv")
+                    if os.path.exists(sub_csv_path):
+                        return sub_csv_path
+    
+    # 如果都没找到，抛出异常
+    raise FileNotFoundError(f"在目录 {parse_result_dir} 及其子目录中未找到 ai_inference_related_papers.csv 文件")
+
 def filter_and_download_papers(parse_result_dir: str, logger: logging.Logger) -> Dict[str, int]:
     """
     主要处理函数：过滤相关论文并下载
@@ -178,10 +210,9 @@ def filter_and_download_papers(parse_result_dir: str, logger: logging.Logger) ->
     Returns:
         Dict[str, int]: 下载结果统计
     """
-    # 1. 检查CSV文件路径
-    csv_path = os.path.join(parse_result_dir, "ai_inference_related_papers.csv")
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f"未找到CSV文件: {csv_path}")
+    # 1. 查找CSV文件路径
+    csv_path = find_csv_file(parse_result_dir)
+    logger.info(f"找到CSV文件: {csv_path}")
     
     logger.info(f"正在解析CSV文件: {csv_path}")
     
@@ -481,10 +512,10 @@ def main():
         epilog="""
 示例用法:
   # 基本用法 - 指定到包含CSV文件的具体目录
-  python deep_analysis.py Daily-Arixiv/2025-09/09-01/ai_acceleration_analysis_20250903_150231
+  python deep_analysis.py "2025-09/09-01"
   
   # 启用调试模式（显示详细日志）
-  python deep_analysis.py Daily-Arixiv/2025-09/09-01/ai_acceleration_analysis_20250903_150231 --debug
+  python deep_analysis.py "2025-09/09-01" --debug
   
   
 功能说明:
@@ -505,8 +536,8 @@ def main():
     )
     
     parser.add_argument(
-        'parse_result',
-        help='包含ai_inference_related_papers.csv的解析结果目录路径'
+        'parse_result_dir',
+        help='解析结果目录路径，例如：2025-09/09-01'
     )
     
     
@@ -521,20 +552,20 @@ def main():
     # 设置日志
     logger = setup_logging(args.debug)
     logger.info("启动深度分析脚本")
-    logger.info(f"解析结果目录: {args.parse_result}")
+    logger.info(f"解析结果目录: {args.parse_result_dir}")
     
     try:
         # 验证输入目录
-        if not os.path.exists(args.parse_result):
-            raise FileNotFoundError(f"解析结果目录不存在: {args.parse_result}")
+        if not os.path.exists(args.parse_result_dir):
+            raise FileNotFoundError(f"解析结果目录不存在: {args.parse_result_dir}")
         
-        if not os.path.isdir(args.parse_result):
-            raise NotADirectoryError(f"指定路径不是目录: {args.parse_result}")
+        if not os.path.isdir(args.parse_result_dir):
+            raise NotADirectoryError(f"指定路径不是目录: {args.parse_result_dir}")
         
         # 执行主要处理
-        download_results = filter_and_download_papers(args.parse_result, logger)
+        download_results = filter_and_download_papers(args.parse_result_dir, logger)
 
-        download_dir = create_related_paper_directory(args.parse_result)
+        download_dir = create_related_paper_directory(args.parse_result_dir)
 
         # 解析PDF文件
         parsed_results = parse_downloaded_pdfs(download_dir, download_results, logger)
@@ -552,7 +583,7 @@ def main():
             
             # 生成最终报告 - 保存到parse_result目录而不是download_dir
             logger.info("=== 生成最终报告 ===")
-            report_path = generate_final_report(parsed_results, args.parse_result, logger)
+            report_path = generate_final_report(parsed_results, args.parse_result_dir, logger)
             
             if report_path:
                 logger.info("=== 技术简报生成完成 ===")

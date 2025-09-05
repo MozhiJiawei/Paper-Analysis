@@ -10,9 +10,13 @@ import random
 import argparse
 from typing import List, Dict, Optional
 from datetime import datetime
+from pathlib import Path
 
-# 添加utils路径以便导入ai_acceleration_extractor
-sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'utils'))
+# 添加utils路径到sys.path以导入模块
+current_dir = Path(__file__).parent
+utils_dir = current_dir.parent / "utils"
+sys.path.insert(0, str(current_dir.parent))
+
 from utils.ai_acceleration_extractor.ai_acceleration_extractor import ai_acceleration_parse_paper_copilot
 
 
@@ -257,14 +261,13 @@ def parse_args():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 使用示例:
-  python parser.py --parse_dir "2025-09/09-01"
-  python parser.py --parse_dir "2025-09/09-01" --sample_size 50
+  python parser.py "2025-09/09-01"
+  python parser.py "2025-09/09-01" --sample_size 50
         """
     )
     
     parser.add_argument(
-        "--parse_dir",
-        required=True,
+        "parse_dir",
         help="指定要解析的目录路径（相对于当前文件的位置），例如: '2025-09/09-01'"
     )
     
@@ -274,8 +277,6 @@ def parse_args():
         default=30,
         help="随机抽检展示的论文数量（默认: 30）"
     )
-    
-
     
     return parser.parse_args()
 
