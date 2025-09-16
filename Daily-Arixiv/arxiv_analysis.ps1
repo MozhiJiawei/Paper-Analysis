@@ -60,7 +60,9 @@ function Update-ReadmeWithReport {
         $dayPart = $dateParts[1]   # 例如: 09-01
         
         # 构建显示日期 (YYYY-MM-DD格式)
-        $displayDate = "$yearMonth-$dayPart"
+        # 将 09-01 格式转换为 01
+        $dayNumber = $dayPart -replace '^\d{2}-', ''
+        $displayDate = "$yearMonth-$dayNumber"
         
         # 查找对应的报告文件
         $targetDir = Join-Path $ScriptDir $ParseDir
@@ -73,7 +75,8 @@ function Update-ReadmeWithReport {
         
         # 使用最新的报告文件
         $latestReport = $reportFiles | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-        $reportRelativePath = "$ParseDir/$($latestReport.Name)"
+        # 统一使用正斜杠路径分隔符
+        $reportRelativePath = "$($ParseDir -replace '\\', '/')/$($latestReport.Name)"
         
         # 读取现有README内容
         if (-not (Test-Path $ReadmePath)) {
@@ -147,8 +150,8 @@ function Update-ReadmeWithReport {
                 }
             }
             
-            # 按日期排序（倒序）
-            $sortedReports = $allReports | Sort-Object Date -Descending
+            # 按日期排序（倒序）- 转换为DateTime对象进行正确排序
+            $sortedReports = $allReports | Sort-Object { [DateTime]::ParseExact($_.Date, 'yyyy-MM-dd', $null) } -Descending
             
             # 构建新内容
             $newContent = @()
