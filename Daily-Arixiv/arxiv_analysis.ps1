@@ -119,8 +119,44 @@ function Update-ReadmeWithReport {
         }
         
         if ($startIndex -eq -1 -or $endIndex -eq -1) {
-            Write-Host "警告: 未找到对应年月的标记区域 ($startMarker, $endMarker)，跳过README更新" -ForegroundColor Yellow
-            return
+            Write-Host "未找到对应年月的标记区域 ($startMarker, $endMarker)，将自动创建..." -ForegroundColor Yellow
+            
+            # 自动创建月份标记区域
+            $newContent = @()
+            $newContent += $readmeContent
+            
+            # 添加新的月份区域
+            $newContent += ""
+            $newContent += "### $yearMonth"
+            $newContent += ""
+            $newContent += $startMarker
+            $newContent += $endMarker
+            $newContent += ""
+            
+            # 写入更新后的内容
+            $newContent | Set-Content $ReadmePath -Encoding UTF8
+            Write-Host "已创建新的月份标记区域: $yearMonth" -ForegroundColor Green
+            
+            # 重新读取文件内容以继续处理
+            $readmeContent = Get-Content $ReadmePath -Encoding UTF8
+            
+            # 重新查找标记位置
+            $startIndex = -1
+            $endIndex = -1
+            
+            for ($i = 0; $i -lt $readmeContent.Length; $i++) {
+                if ($readmeContent[$i] -eq $startMarker) {
+                    $startIndex = $i
+                }
+                if ($readmeContent[$i] -eq $endMarker) {
+                    $endIndex = $i
+                    break
+                }
+            }
+            
+            if ($startIndex -eq -1 -or $endIndex -eq -1) {
+                throw "创建标记区域后仍无法找到标记位置"
+            }
         }
         
         # 提取现有报告列表

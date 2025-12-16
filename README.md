@@ -10,10 +10,10 @@
 
 ```bash
 # 使用Docker启动Grobid服务（推荐）
-docker run --rm -it -p 8070:8070 lfoppiano/grobid:0.8.3
+docker run --rm -it -p 8070:8070 lfoppiano/grobid:latest-crf
 
 # 或后台运行
-docker run -d --name grobid -p 8070:8070 lfoppiano/grobid:0.8.3
+docker run -d --name grobid -p 8070:8070 lfoppiano/grobid:latest-crf
 ```
 
 ### 2. 豆包API配置

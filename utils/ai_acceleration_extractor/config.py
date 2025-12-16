@@ -54,7 +54,7 @@ CORE_KEYWORDS = {
         "top-k routing", "expert utilization", "moe efficiency", "sparse expert",
         "expert load balancing", "dynamic routing", "adaptive routing",
         "expert sparsity", "moe optimization", "expert caching", "expert scheduling",
-        "communication-efficient mixture", "communication-efficient moe"
+        "communication-efficient mixture", "communication-efficient moe", "expert skipping"
     ]
 }
 
